@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0; }
+
+h1 {
+  margin: 0; }
+
+#header {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  background: #31c27c; }
+  #header h1 {
+    display: none; }
+  #header #logo {
+    height: 25px;
+    margin-left: 10px; }
+
+body {
+  background: #f4f4f4; }
