@@ -1,0 +1,23 @@
+{
+  "name": "qq-music",
+  "version": "1.0.0",
+  "description": "QQ Music",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twhy/qq-music.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Tom Wang",
+    "email": "tom.wanghaiyi@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twhy/qq-music/issues"
+  },
+  "homepage": "https://github.com/twhy/qq-music#readme"
+}
