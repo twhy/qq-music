@@ -18,5 +18,19 @@ h1 {
     height: 25px;
     margin-left: 10px; }
 
+.qq-slider {
+  width: 100%;
+  overflow: hidden; }
+  .qq-slider .qq-slider-wrap {
+    display: flex;
+    transition: .3s; }
+  .qq-slider .qq-slider-item {
+    flex-basis: 100%; }
+    .qq-slider .qq-slider-item > a {
+      display: block; }
+      .qq-slider .qq-slider-item > a img {
+        width: 100%;
+        display: block; }
+
 body {
   background: #f4f4f4; }
