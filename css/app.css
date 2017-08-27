@@ -7,6 +7,11 @@ body {
 h1 {
   margin: 0; }
 
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
 #header {
   display: flex;
   align-items: center;
@@ -17,6 +22,29 @@ h1 {
   #header #logo {
     height: 25px;
     margin-left: 10px; }
+
+.navbar .nav-list {
+  display: flex;
+  align-items: center; }
+  .navbar .nav-list .nav-item {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    height: 40px;
+    line-height: 40px; }
+    .navbar .nav-list .nav-item.active {
+      color: #31c27c; }
+    .navbar .nav-list .nav-item.active::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #31c27c; }
 
 .qq-slider {
   width: 100%;
@@ -31,6 +59,9 @@ h1 {
       .qq-slider .qq-slider-item > a img {
         width: 100%;
         display: block; }
+
+.hide {
+  display: none; }
 
 body {
   background: #f4f4f4; }
