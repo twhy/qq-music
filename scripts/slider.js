@@ -3,6 +3,7 @@ class Slider {
     this.$el = options.el
     this.slides = options.slides
     this.interval = options.interval || 3000
+    this.duration = options.duration || 300
     this.index = 0
     this.render()
     this.start()
@@ -11,6 +12,7 @@ class Slider {
   render() {
     this.$el.innerHTML = `<div class="qq-slider-wrap"></div>`
     this.$wrap = this.$el.firstElementChild
+    this.$wrap.style.transitionDuration = `${this.duration}ms`
     this.$wrap.style.width = `${this.slides.length * 100}%`
     this.$wrap.innerHTML = this.slides.map(slide =>
       `<div class="qq-slider-item">
