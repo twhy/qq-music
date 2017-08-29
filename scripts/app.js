@@ -11,6 +11,4 @@
     ]
   })
 
-  window.slider = slider
-
 })()
