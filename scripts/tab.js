@@ -7,7 +7,6 @@ document.addEventListener('click', function(event) {
   [].forEach.call(target.parentElement.children, tab => {
     tab.classList.remove('active')
   })
-
   target.classList.add('active')
     
   let content = document.querySelector(target.dataset.view)
