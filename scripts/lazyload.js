@@ -1,12 +1,11 @@
-function lazyload(imgs) {
-  imgs = Array.from(imgs)
+function lazyload(images) {
+  let imgs = [].slice.call(images)  // Array.from(images)
 
   if ('IntersectionObserver' in window) {
     let observer = new IntersectionObserver(function(entries) {
-      console.log(entries)
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
-          loadImage(entry.target, function() {
+          loadImage(entry.target, () => {
             observer.unobserve(entry.target)
           })
         }
