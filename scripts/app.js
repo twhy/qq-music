@@ -8,17 +8,12 @@
     renderSlider(json.data.slider)
     renderRadios(json.data.radioList)
     renderPlaylists(json.data.songList)
-    lazyload(document.querySelectorAll('.lazyload'))
+    lazyload()
   }
 
   function renderSlider(slides) {
-    slides = slides.map(slide => {
-      return { link: slide.linkUrl, image: slide.picUrl }
-    })
-    new Slider({
-      el: document.querySelector('#slider'),
-      slides
-    })
+    slides = slides.map(slide => ({ link: slide.linkUrl, image: slide.picUrl }))
+    new Slider({ el: document.querySelector('#slider'), slides })
   }
 
   function renderRadios(radios) {
