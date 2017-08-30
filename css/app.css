@@ -12,6 +12,9 @@ ul, ol {
   padding: 0;
   list-style: none; }
 
+a {
+  text-decoration: none; }
+
 #header {
   display: flex;
   align-items: center;
@@ -22,6 +25,18 @@ ul, ol {
   #header #logo {
     height: 25px;
     margin-left: 10px; }
+  #header .download {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 8px;
+    height: 28px;
+    padding: 0 12px;
+    line-height: 28px;
+    border-radius: 99px;
+    font-size: 14px;
+    background: #149c5a;
+    color: #fff; }
 
 .navbar .nav-list {
   display: flex;
