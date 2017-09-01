@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/twhy/qq-music#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"

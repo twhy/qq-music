@@ -1,5 +1,6 @@
 const express = require('express')
 const request = require('request-promise')
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 4000
 
@@ -10,6 +11,8 @@ const HEADERS = {
   'referer': 'https://m.y.qq.com/',
   'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
 }
+
+app.use(cors())
 
 app.get('/', async (req, res) => {
   const url = `https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=${+ new Date()}`
