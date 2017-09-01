@@ -18,13 +18,13 @@
   </header>
   <nav class="navbar">
     <ul class="nav-list">
-      <li class="nav-item active" data-role="tab" data-view="#rec-view">推荐</li>
+      <li class="nav-item" data-role="tab" data-view="#rec-view">推荐</li>
       <li class="nav-item" data-role="tab" data-view="#rank-view">排行榜</li>
-      <li class="nav-item" data-role="tab" data-view="#search-view">搜索</li>
+      <li class="nav-item active" data-role="tab" data-view="#search-view">搜索</li>
     </ul>
   </nav>
   <div class="views">
-    <div id="rec-view">
+    <div id="rec-view" class="hide">
       <div class="qq-slider" id="slider"></div>
       <div class="radios">
         <h2 class="title">电台</h2>
@@ -36,10 +36,16 @@
       </div>
     </div>
     <div id="rank-view" class="hide">
-      排行版
+      <ul class="toplist">
+      </ul>
     </div>
-    <div id="search-view" class="hide">
-      搜索
+    <div id="search-view">
+      <div class="search-bar">
+        <div class="input-wrap">
+          <input id="search" type="text" placeholder="搜索歌曲、歌单、专辑">
+          <span class="icon-search"></span>
+        </div>
+      </div>
     </div>
   </div>
   <script src="scripts/slider.js"></script>

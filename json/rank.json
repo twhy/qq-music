@@ -1,0 +1,220 @@
+{
+  "code": 0,
+  "subcode": 0,
+  "message": "",
+  "default": 0,
+  "data": {
+    "topList": [
+      {
+        "id": 4,
+        "listenCount": 20000000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_4_300_203705594.jpg",
+        "songList": [
+          { "singername": "毛不易", "songname": "借 (Live)" },
+          { "singername": "GAI", "songname": "苦行僧 (Live)" },
+          { "singername": "红花会PG ONE", "songname": "H.M.E (Live)" }
+        ],
+        "topTitle": "巅峰榜·流行指数",
+        "type": 0
+      },
+      {
+        "id": 26,
+        "listenCount": 19500000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_26_300_203691607.jpg",
+        "songList": [
+          {
+            "singername": "Taylor Swift",
+            "songname": "Look What You Made Me Do"
+          },
+          { "singername": "校长", "songname": "带你去旅行" },
+          { "singername": "金志文", "songname": "远走高飞 (独唱版)" }
+        ],
+        "topTitle": "巅峰榜·热歌",
+        "type": 0
+      },
+      {
+        "id": 27,
+        "listenCount": 15400000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_27_300_203691607.jpg",
+        "songList": [
+          {
+            "singername": "Taylor Swift",
+            "songname": "Look What You Made Me Do"
+          },
+          { "singername": "李荣浩", "songname": "歌谣" },
+          { "singername": "王嘉尔", "songname": "九州天空城" }
+        ],
+        "topTitle": "巅峰榜·新歌",
+        "type": 0
+      },
+      {
+        "id": 50,
+        "listenCount": 11461250,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_50_300_203705575.jpg",
+        "songList": [
+          { "singername": "GAI", "songname": "苦行僧 (Live)" },
+          { "singername": "红花会PG ONE", "songname": "H.M.E (Live)" },
+          { "singername": "Tizzy T", "songname": "头文字T (Live)" }
+        ],
+        "topTitle": "巅峰榜·中国有嘻哈",
+        "type": 0
+      },
+      {
+        "id": 51,
+        "listenCount": 9900000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_51_300_203705594.jpg",
+        "songList": [
+          { "singername": "毛不易", "songname": "借 (Live)" },
+          { "singername": "毛不易", "songname": "消愁 (Live)" },
+          { "singername": "毛不易", "songname": "像我这样的人 (Live)" }
+        ],
+        "topTitle": "巅峰榜·明日之子",
+        "type": 0
+      },
+      {
+        "id": 25,
+        "listenCount": 10000000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_25_300_203702977.jpg",
+        "songList": [
+          { "singername": "莫安琪", "songname": "刀马旦 (Live)" },
+          { "singername": "朱婷婷", "songname": "父亲写的散文诗 (Live)" },
+          { "singername": "叶晓粤", "songname": "母系社会 (Live)" }
+        ],
+        "topTitle": "巅峰榜·中国新歌声",
+        "type": 0
+      },
+      {
+        "id": 28,
+        "listenCount": 15498810,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_28_300_202658270.jpg",
+        "songList": [
+          { "singername": "大壮", "songname": "我们不一样" },
+          { "singername": "罗玉坤", "songname": "最美情侣" },
+          { "singername": "赵方婧", "songname": "尽头" }
+        ],
+        "topTitle": "巅峰榜·网络歌曲",
+        "type": 0
+      },
+      {
+        "id": 5,
+        "listenCount": 8604340,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_5_300_203695796.jpg",
+        "songList": [
+          { "singername": "王嘉尔", "songname": "Papillon（巴比龙）" },
+          { "singername": "周笔畅", "songname": "七分钟好女孩 七分钟坏女孩" },
+          { "singername": "校长", "songname": "带你去旅行" }
+        ],
+        "topTitle": "巅峰榜·内地",
+        "type": 0
+      },
+      {
+        "id": 6,
+        "listenCount": 5417800,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_6_300_203639711.jpg",
+        "songList": [
+          { "singername": "莫文蔚", "songname": "I Do" },
+          { "singername": "岑宁儿", "songname": "追光者" },
+          { "singername": "杨宗纬", "songname": "越过山丘" }
+        ],
+        "topTitle": "巅峰榜·港台",
+        "type": 0
+      },
+      {
+        "id": 3,
+        "listenCount": 9300000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_3_300_203691607.jpg",
+        "songList": [
+          {
+            "singername": "Taylor Swift",
+            "songname": "Look What You Made Me Do"
+          },
+          { "singername": "Martin Garrix", "songname": "Pizza" },
+          { "singername": "Justin Bieber/BloodPop®", "songname": "Friends" }
+        ],
+        "topTitle": "巅峰榜·欧美",
+        "type": 0
+      },
+      {
+        "id": 16,
+        "listenCount": 7151940,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_16_300_203659397.jpg",
+        "songList": [
+          { "singername": "선미 (宣美)", "songname": "가시나 (Gashina)" },
+          { "singername": "현아 (泫雅)", "songname": "베베 (BABE)" },
+          {
+            "singername": "킬라그램 (Killah Gramz)/딘 (DEAN)/지코 (Zico)",
+            "songname": "어디 (哪里)"
+          }
+        ],
+        "topTitle": "巅峰榜·韩国",
+        "type": 0
+      },
+      {
+        "id": 17,
+        "listenCount": 1940000,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_17_300_203649913.jpg",
+        "songList": [
+          { "singername": "初音ミク (初音未来)", "songname": "神无月 (日文版)" },
+          { "singername": "中島美嘉 (なかしま みか)", "songname": "电光石火之间" },
+          { "singername": "MACO (まこ)", "songname": "恋の道 (恋爱的道路)" }
+        ],
+        "topTitle": "巅峰榜·日本",
+        "type": 0
+      },
+      {
+        "id": 201,
+        "listenCount": 416391,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/20150127163830.jpg",
+        "songList": [
+          {
+            "singername": "Taylor Swift",
+            "songname": "Look What You Made Me Do"
+          },
+          { "singername": "현아", "songname": "베베 (BABE)" },
+          { "singername": "王嘉尔", "songname": "Papillon（巴比龙）" }
+        ],
+        "topTitle": "巅峰榜·MV",
+        "type": 0
+      },
+      {
+        "id": 32,
+        "listenCount": 3106860,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_32_300_203705580.jpg",
+        "songList": [
+          { "singername": "红花会PG ONE", "songname": "H.M.E (Live)" },
+          { "singername": "GAI", "songname": "苦行僧 (Live)" },
+          { "singername": "赵雷", "songname": "成都" }
+        ],
+        "topTitle": "巅峰榜·音乐人",
+        "type": 0
+      },
+      {
+        "id": 36,
+        "listenCount": 4085540,
+        "picUrl":
+          "http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_36_300_201816153.jpg",
+        "songList": [
+          { "singername": "姜真祖", "songname": "成都" },
+          { "singername": "郑阳亭", "songname": "你那么爱他" },
+          { "singername": "胡慧", "songname": "分手快乐" }
+        ],
+        "topTitle": "巅峰榜·K歌金曲",
+        "type": 0
+      }
+    ]
+  }
+}
