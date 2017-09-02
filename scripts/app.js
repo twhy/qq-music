@@ -18,7 +18,7 @@
 
   let $search = document.querySelector('#search')
   $search.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
+    if (this.value.length && event.key === 'Enter') {
       fetch(`https://qq-music-api.now.sh/search?keyword=${this.value}`)
         .then(res => res.json())
         .then(console.log)
