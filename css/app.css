@@ -230,5 +230,110 @@ i {
     background-size: cover;
     text-indent: -999px; }
 
+.search-results .song-item {
+  position: relative;
+  height: 55px;
+  padding-left: 56px;
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1px solid #ddd; }
+
+.search-results .song-name {
+  margin: 10px 0 2px;
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000; }
+
+.search-results .song-artist {
+  color: #808080;
+  font-size: 12px; }
+
+.search-results .icon-music {
+  top: 18px;
+  left: 18px;
+  width: 22px;
+  height: 20px;
+  position: absolute;
+  background-position: 0 0;
+  background-size: 22px 30px;
+  background-repeat: no-repeat;
+  background-image: url(../images/search.png); }
+
+.search-loading {
+  height: 55px;
+  text-align: center;
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center; }
+  .search-loading.show {
+    display: flex; }
+  .search-loading .loading-icon {
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 20px 20px;
+    background-image: url("../images/icon_loading.png");
+    animation: loading 1s infinite; }
+  .search-loading .loading-text {
+    margin-left: 5px; }
+  .search-loading .loading-done, .search-loading .loading-text {
+    color: #808080;
+    font-size: 12px; }
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg); }
+  8.32% {
+    transform: rotate(0deg); }
+  8.33% {
+    transform: rotate(30deg); }
+  16.65% {
+    transform: rotate(30deg); }
+  16.66% {
+    transform: rotate(60deg); }
+  24.99% {
+    transform: rotate(60deg); }
+  25% {
+    transform: rotate(90deg); }
+  33.32% {
+    transform: rotate(90deg); }
+  33.33% {
+    transform: rotate(120deg); }
+  41.65% {
+    transform: rotate(120deg); }
+  41.66% {
+    transform: rotate(150deg); }
+  49.99% {
+    transform: rotate(150deg); }
+  50% {
+    transform: rotate(180deg); }
+  58.32% {
+    transform: rotate(180deg); }
+  58.33% {
+    transform: rotate(210deg); }
+  66.65% {
+    transform: rotate(210deg); }
+  66.66% {
+    transform: rotate(240deg); }
+  74.99% {
+    transform: rotate(240deg); }
+  75% {
+    transform: rotate(270deg); }
+  83.32% {
+    transform: rotate(270deg); }
+  83.33% {
+    transform: rotate(300deg); }
+  91.65% {
+    transform: rotate(300deg); }
+  91.66% {
+    transform: rotate(330deg); }
+  99.99% {
+    transform: rotate(330deg); } }
+
 body {
   background: #f4f4f4; }

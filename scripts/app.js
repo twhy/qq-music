@@ -16,14 +16,7 @@
     lazyload()
   }
 
-  let $search = document.querySelector('#search')
-  $search.addEventListener('keydown', function(event) {
-    if (this.value.length && event.key === 'Enter') {
-      fetch(`https://qq-music-api.now.sh/search?keyword=${this.value}`)
-        .then(res => res.json())
-        .then(console.log)
-    }
-  })
+  let search = new Search(document.querySelector('#search-view'))
 
   function renderSlider(slides) {
     slides = slides.map(slide => ({ link: slide.linkUrl, image: slide.picUrl }))

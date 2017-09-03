@@ -24,7 +24,7 @@
     </ul>
   </nav>
   <div class="views">
-    <div id="rec-view">
+    <div id="rec-view" class="hide">
       <div class="qq-slider" id="slider"></div>
       <div class="radios">
         <h2 class="title">电台</h2>
@@ -42,18 +42,27 @@
       <ul class="toplist">
       </ul>
     </div>
-    <div id="search-view" class="hide">
+    <div id="search-view">
       <div class="search-bar">
         <div class="input-wrap">
           <input id="search" type="text" placeholder="搜索歌曲、歌单、专辑">
           <span class="icon-search"></span>
         </div>
       </div>
+      <div class="search-results">
+        <ul class="song-list"></ul>
+      </div>
+      <div class="search-loading">
+        <i class="loading-icon"></i>
+        <div class="loading-text">正在载入更多...</div>
+        <div class="loading-done hide">已加载全部</div>
+      </div>
     </div>
   </div>
   <script src="scripts/slider.js"></script>
   <script src="scripts/lazyload.js"></script>
   <script src="scripts/tab.js"></script>
+  <script src="scripts/search.js"></script>
   <script src="scripts/app.js"></script>
 </body>
 
