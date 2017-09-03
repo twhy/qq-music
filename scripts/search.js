@@ -5,6 +5,7 @@ class Search {
     this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
     this.$songs = this.$el.querySelector('.song-list')
     this.page = 1
+    this.songs = []
     this.keyword = ''
     this.perpage = 20
     this.nomore = false
@@ -29,6 +30,7 @@ class Search {
 
   reset() {
     this.page = 1
+    this.songs = []
     this.keyword = ''
     this.nomore = false
     this.$songs.innerHTML = ''
@@ -44,6 +46,7 @@ class Search {
       .then(res => res.json())
       .then(json => {
         this.page = json.data.song.curpage
+        this.songs.push(...json.data.song.list)
         this.nomore = json.message === 'no results'
         return json.data.song.list
       })
@@ -70,7 +73,8 @@ class Search {
   done() {
     this.fetching = false
     if (this.nomore) {
-      this.$el.querySelectorAll('.loading-icon, .loading-text').forEach(el => el.style.display = 'none')
+      this.$el.querySelector('.loading-icon').style.display = 'none'
+      this.$el.querySelector('.loading-text').style.display = 'none'
       this.$el.querySelector('.loading-done').style.display = 'block'
       this.$el.querySelector('.search-loading').classList.add('show')
     } else {
