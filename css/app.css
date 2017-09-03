@@ -335,5 +335,18 @@ i {
   99.99% {
     transform: rotate(330deg); } }
 
+#player {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  transition: 0.2s;
+  transform: translate(100%);
+  background: rgba(0, 0, 0, 0.5); }
+
 body {
   background: #f4f4f4; }
+
+html, body {
+  height: 100%; }

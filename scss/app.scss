@@ -7,7 +7,12 @@
 @import "rec";
 @import "rank";
 @import "search";
+@import "player";
 
 body {
   background: $body-background;
+}
+
+html, body {
+  height: 100%;
 }
