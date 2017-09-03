@@ -54,4 +54,23 @@ app.get('/hotkey', async (req, res) => {
   }
 })
 
+app.get('/lyrics', async (req, res) => {
+  const { id, type } = req.query
+  const url = `https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?nobase64=1&musicid=${id}&songtype=${type || 0}`  
+  try {
+    let text = (await request({
+      uri: url,
+      headers: {
+        'accept': '*/*',
+        'authority': 'c.y.qq.com',
+        'referer': 'https://c.y.qq.com',
+        'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+      }
+    })).replace(/MusicJsonCallback\((.*)\)/, '$1')
+    res.json(JSON.parse(text))
+  } catch(e) {
+    res.json({ error: e.message })
+  }
+})
+
 app.listen(PORT)
