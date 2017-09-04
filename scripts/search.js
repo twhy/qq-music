@@ -5,7 +5,7 @@ class Search {
     this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
     this.$songs = this.$el.querySelector('.song-list')
     this.page = 1
-    this.songs = []
+    this.songs = {}
     this.keyword = ''
     this.perpage = 20
     this.nomore = false
@@ -30,14 +30,14 @@ class Search {
 
   reset() {
     this.page = 1
-    this.songs = []
+    this.songs = {}
     this.keyword = ''
     this.nomore = false
     this.$songs.innerHTML = ''
   }
 
   search(keyword, page) {
-    if (!this.page && this.keyword === keyword) return
+    if (this.keyword === keyword && this.songs[this.page]) return
     if (this.nomore || this.fetching) return
     if (this.keyword !== keyword) this.reset()
     this.keyword = keyword
@@ -46,7 +46,7 @@ class Search {
       .then(res => res.json())
       .then(json => {
         this.page = json.data.song.curpage
-        this.songs.push(...json.data.song.list)
+        this.songs[this.page] = json.data.song.list
         this.nomore = json.message === 'no results'
         return json.data.song.list
       })
