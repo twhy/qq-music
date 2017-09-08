@@ -14,10 +14,11 @@ class MusicPlayer {
     this.$audio = document.createElement('audio')
     this.$audio.loop = true
     this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
-    this.$audio.addEventListener('ended', () => {
+    this.$audio.onended = () => {
       this.lyrics.restart()
       this.progress.restart()
-    })
+      console.log('ended')
+    }
     document.body.appendChild(this.$audio)
   }
 
@@ -112,12 +113,12 @@ class LyricsPlayer {
 
   update() {
     this.elapsed += 1
+    if (this.index === this.lyrics.length - 1) return this.reset()
     for (let i = this.index + 1; i < this.lyrics.length; i++) {
       let seconds = this.getSeconds(this.lyrics[i])
       if (
         this.elapsed === seconds &&
-        this.lyrics[i + 1] &&
-        this.elapsed < this.getSeconds(this.lyrics[i + 1])
+        (!this.lyrics[i + 1] || this.elapsed < this.getSeconds(this.lyrics[i + 1]))
       ) {
         this.$lines.children[this.index].classList.remove('active')
         this.$lines.children[i].classList.add('active')
@@ -132,6 +133,7 @@ class LyricsPlayer {
   }
 
   reset(text) {
+    this.pause()
     this.index = 0
     this.elapsed = 0
     if (text) {
