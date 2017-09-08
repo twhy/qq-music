@@ -29,7 +29,7 @@ i {
   #header #logo {
     height: 25px;
     margin-left: 10px; }
-  #header .download {
+  #header .show-player {
     position: absolute;
     display: inline-block;
     right: 10px;
@@ -231,6 +231,7 @@ i {
     text-indent: -999px; }
 
 .search-results .song-item {
+  display: block;
   position: relative;
   height: 55px;
   padding-left: 56px;
@@ -342,7 +343,13 @@ i {
   height: 100%;
   z-index: 9;
   position: fixed;
-  transition: 0.2s; }
+  transition: 0.3s;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-100%); }
+  #player.show {
+    opacity: 1;
+    transform: translateY(0); }
   #player .player-container {
     z-index: 9;
     height: 100%;
@@ -397,7 +404,7 @@ i {
       font-size: 18px;
       font-weight: normal;
       color: #fff; }
-    #player .player-header .singer-name {
+    #player .player-header .song-artist {
       height: 21px;
       font-size: 14px;
       color: #fff; }

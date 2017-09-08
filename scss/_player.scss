@@ -5,7 +5,14 @@
   height: 100%;
   z-index: 9;
   position: fixed;
-  transition: 0.2s;
+  transition: 0.3s;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-100%);
+  &.show { 
+    opacity: 1;
+    transform: translateY(0); 
+  }
   .player-container {
     z-index: 9;
     height: 100%;
@@ -69,7 +76,7 @@
       font-weight: normal;
       color: #fff;
     }
-    .singer-name {
+    .song-artist {
       height: 21px;
       font-size: 14px;
       color: #fff;

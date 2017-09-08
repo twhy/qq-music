@@ -14,7 +14,7 @@
   <header id="header">
     <h1>QQ 音乐</h1>
     <img src="images/logo.png" alt="Logo" id="logo">
-    <a href="#" class="download">下载 APP</a>
+    <div class="show-player">播放器</div>
   </header>
   <nav class="navbar">
     <ul class="nav-list">
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="search-results">
-        <ul class="song-list"></ul>
+        <div class="song-list"></div>
       </div>
       <div class="search-loading">
         <i class="loading-icon"></i>
@@ -62,12 +62,12 @@
   <div id="player">
     <div class="player-container">
       <div class="player-header">
-        <img class="album-cover" src="https://y.gtimg.cn/music/photo_new/T002R150x150M000001aCiDu2s9LF6.jpg?max_age=2592000">
+        <img class="album-cover">
         <div class="song-info">
-          <div class="song-name ellipsis">龙卷风 (Live)</div>
-          <div class="singer-name ellipsis">我们白着呢 / 李荣浩</div>
+          <div class="song-name ellipsis"></div>
+          <div class="song-artist ellipsis"></div>
         </div>
-        <span class="icon-action icon-pause"></span>
+        <span class="icon-action icon-play"></span>
       </div>
       <div class="player-lyrics"></div>
       <div class="player-footer">
@@ -78,8 +78,7 @@
         </div>
       </div>
     </div>
-    <div class="player-background" style="background-image: url(https://y.gtimg.cn/music/photo_new/T002R150x150M000001aCiDu2s9LF6.jpg)">
-    </div>
+    <div class="player-background"></div>
   </div>
   <script src="scripts/slider.js"></script>
   <script src="scripts/lazyload.js"></script>

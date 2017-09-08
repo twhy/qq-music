@@ -37,7 +37,7 @@ class Search {
   }
 
   search(keyword, page) {
-    if (this.keyword === keyword && this.songs[this.page]) return
+    if (this.keyword === keyword && this.songs[page || this.page]) return
     if (this.nomore || this.fetching) return
     if (this.keyword !== keyword) this.reset()
     this.keyword = keyword
@@ -56,12 +56,15 @@ class Search {
   }
 
   append(songs) {
-    let html = songs.map(song => `
-      <li class="song-item">
-        <i class="icon icon-music"></i>
-        <div class="song-name ellipsis">${song.songname}</div>
-        <div class="song-artist ellipsis">${song.singer.map(s => s.name).join(' ')}</div>
-      </li>`).join('')
+    let html = songs.map(song => {
+      let artist = song.singer.map(s => s.name).join(' ')
+      return `
+        <a class="song-item"
+           href="#player?artist=${artist}&songid=${song.songid}&songname=${song.songname}&albummid=${song.albummid}&duration=${song.interval}">
+          <i class="icon icon-music"></i>
+          <div class="song-name ellipsis">${song.songname}</div>
+          <div class="song-artist ellipsis">${artist}</div>
+        </a>`}).join('')
     this.$songs.insertAdjacentHTML('beforeend', html)
   }
 
