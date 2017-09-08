@@ -12,6 +12,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    background: rgba(0, 0, 0, .6);
   }
   .player-background {
     position: absolute;
@@ -57,19 +58,16 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      max-width: calc(100% - 150px);
     }
     .song-name {
       height: 30px;
-      overflow: hidden;
       font-size: 18px;
       font-weight: normal;
       color: #fff;
     }
     .singer-name {
       height: 21px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       font-size: 14px;
       color: #fff;
     }
@@ -77,11 +75,63 @@
 
   .player-lyrics {
     flex: 1;
+    overflow: hidden;
+    margin: 36px 0 60px 0;
+    color: rgba(255,255,255,.6);
+    max-height: calc(100% - 205px);
+    [class^='player-lyrics-line-'] {
+      height: 42px;
+      line-height: 42px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+    }
+    .active {
+      color: $color-primary;
+    }
   }
 
   .player-footer {
+    position: relative;
+    .icon-list {
+      width: 40px;
+      height: 40px;
+      right: 13px;
+      top: -40px;
+      position: absolute;
+      background-image: url(../images/sprite_play.png);
+      background-repeat: no-repeat;
+      background-size: 40px 380px;
+      background-position: 8px -250px;
+    }
+    .progress {
+      display: flex;
+      align-items: center;
+    }
+    .progress-bar {
+      flex: 1;
+      background-color: rgba(255, 255, 255, .2);
+      .progress-bar-progress {
+        height: 2px;
+        background: $color-primary;
+      }
+    }
+    .progress-time {
+      top: 0;
+      z-index: 1;
+      width: 55px;
+      font-size: 13px;
+      color: #808080;
+      line-height: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
     .actions {
       height: 65px;
+      margin-top: 10px;
     }
     .btn-download {
       position: relative;
@@ -95,7 +145,7 @@
       font-size: 20px;
       color: #fff;
       border-radius: 999px;
-      background-color: #31c27c;
+      background-color: $color-primary;
       text-align: center;
       background-image: url(../images/sprite_play.png);
       background-repeat: no-repeat;

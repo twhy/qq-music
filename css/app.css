@@ -348,7 +348,8 @@ i {
     height: 100%;
     position: relative;
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.6); }
   #player .player-background {
     position: absolute;
     top: 0;
@@ -388,42 +389,85 @@ i {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: center;
+      max-width: calc(100% - 150px); }
     #player .player-header .song-name {
       height: 30px;
-      overflow: hidden;
       font-size: 18px;
       font-weight: normal;
       color: #fff; }
     #player .player-header .singer-name {
       height: 21px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       font-size: 14px;
       color: #fff; }
   #player .player-lyrics {
-    flex: 1; }
-  #player .player-footer .actions {
-    height: 65px; }
-  #player .player-footer .btn-download {
-    position: relative;
-    display: block;
-    height: 45px;
-    line-height: 45px;
-    margin: 0 50px;
-    padding: 0 55px;
+    flex: 1;
     overflow: hidden;
-    white-space: nowrap;
-    font-size: 20px;
-    color: #fff;
-    border-radius: 999px;
-    background-color: #31c27c;
-    text-align: center;
-    background-image: url(../images/sprite_play.png);
-    background-repeat: no-repeat;
-    background-size: 43px 380px;
-    background-position: 6px -321px; }
+    margin: 36px 0 60px 0;
+    color: rgba(255, 255, 255, 0.6);
+    max-height: calc(100% - 205px); }
+    #player .player-lyrics [class^='player-lyrics-line-'] {
+      height: 42px;
+      line-height: 42px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center; }
+    #player .player-lyrics .active {
+      color: #31c27c; }
+  #player .player-footer {
+    position: relative; }
+    #player .player-footer .icon-list {
+      width: 40px;
+      height: 40px;
+      right: 13px;
+      top: -40px;
+      position: absolute;
+      background-image: url(../images/sprite_play.png);
+      background-repeat: no-repeat;
+      background-size: 40px 380px;
+      background-position: 8px -250px; }
+    #player .player-footer .progress {
+      display: flex;
+      align-items: center; }
+    #player .player-footer .progress-bar {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.2); }
+      #player .player-footer .progress-bar .progress-bar-progress {
+        height: 2px;
+        background: #31c27c; }
+    #player .player-footer .progress-time {
+      top: 0;
+      z-index: 1;
+      width: 55px;
+      font-size: 13px;
+      color: #808080;
+      line-height: 40px;
+      text-align: center;
+      letter-spacing: 1px; }
+    #player .player-footer .actions {
+      height: 65px;
+      margin-top: 10px; }
+    #player .player-footer .btn-download {
+      position: relative;
+      display: block;
+      height: 45px;
+      line-height: 45px;
+      margin: 0 50px;
+      padding: 0 55px;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 20px;
+      color: #fff;
+      border-radius: 999px;
+      background-color: #31c27c;
+      text-align: center;
+      background-image: url(../images/sprite_play.png);
+      background-repeat: no-repeat;
+      background-size: 43px 380px;
+      background-position: 6px -321px; }
 
 body {
   background: #f4f4f4; }

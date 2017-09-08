@@ -1,5 +1,7 @@
+$color-primary: #31c27c;
+
 $header-height: 44px;
-$header-background: #31c27c;
+$header-background: $color-primary;
 
 $logo-height: 25px;
 
@@ -7,4 +9,4 @@ $body-background: #f4f4f4;
 
 $nav-item-height: 40px;
 $nav-item-color: rgba(0,0,0,.6);
-$nav-item-active: #31c27c;
+$nav-item-active: $color-primary;

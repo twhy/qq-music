@@ -1,5 +1,39 @@
-class Player {
+class MusicPlayer {
   constructor(el) {
+    this.index = ++this.constructor.counter
+  }
+}
+
+MusicPlayer.counter = 0
+
+class LyricsPlayers {
+  constructor(el) {
+
+  }
+}
+
+class ProgressBar {
+  constructor(el) {
+    
+  }
+
+  set progress(progress) {
+
+  }
+
+  get progress() {
+
+  }
+
+  continue() {
+    
+  }
+
+  pause() {
+
+  }
+
+  stop() {
 
   }
 }
