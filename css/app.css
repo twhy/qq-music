@@ -417,7 +417,7 @@ i {
     #player .player-lyrics .player-lyrics-lines {
       overflow: hidden;
       transition: .5s; }
-    #player .player-lyrics [class^='player-lyrics-line-'] {
+    #player .player-lyrics .player-lyrics-line {
       height: 42px;
       line-height: 42px;
       overflow: hidden;
@@ -490,3 +490,6 @@ body {
 
 html, body {
   height: 100%; }
+
+.noscroll {
+  overflow: hidden; }
