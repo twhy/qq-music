@@ -61,10 +61,11 @@ class LyricsPlayer {
     if (text) {
       this.text = this.formatText(text) || ''
       this.lyrics = this.text.match(/^\[\d{2}:\d{2}.\d{2}\](.+)$/gm) || []
-      if (this.lyrics.length) {
-        this.render()
-        this.$lines.children[this.index].classList.add('active')
-      }
+      if (this.lyrics.length) this.render()
+    }
+
+    if (this.lyrics.length) {
+      this.$lines.children[this.index].classList.add('active')
     }
   }
 
