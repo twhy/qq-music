@@ -1,17 +1,22 @@
 class MusicPlayer {
+  
   constructor(el) {
     this.$el = el
     this.$el.addEventListener('click', this)
-    this.index = ++this.constructor.counter
     this.createAudio()
+    this.createProgress()
   }
 
   createAudio() {
     this.$audio = document.createElement('audio')
     this.$audio.autoplay = true
     this.$audio.loop = true
-    this.$audio.id = `player${this.index}`
+    this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
     document.body.appendChild(this.$audio)
+  }
+
+  createProgress() {
+    this.progress = new ProgressBar(this.$el.querySelector('.progress'), 248, true)
   }
 
   handleEvent(event) {
@@ -27,44 +32,77 @@ class MusicPlayer {
   }
 
   onPause(event) {
+    this.progress.pause()
     event.target.classList.add('icon-play')
     event.target.classList.remove('icon-pause')
   }
 
   onPlay(event) {
+    this.progress.start()
     event.target.classList.add('icon-pause')
     event.target.classList.remove('icon-play')
   }
 }
 
-MusicPlayer.counter = 0
-
-class LyricsPlayers {
+class LyricsPlayer {
   constructor(el) {
-
+    this.$el = el
   }
 }
 
 class ProgressBar {
-  constructor(el) {
-    this.$el = el
+  constructor(el, duration, start) {
+    this.elapsed = 0
+    this.duration = duration
     this.progress = 0
+    this.$el = el
+    this.render()
+    this.$progress = this.$el.querySelector('.progress-bar-progress')
+    this.$elapsed = this.$el.querySelector('.progress-elapsed')
+    this.$duration = this.$el.querySelector('.progress-duration')
+    this.$elapsed.innerText = this.formatTime(this.elapsed)
+    this.$duration.innerText = this.formatTime(this.duration)
+    if (start) this.start()
   }
 
-  set(progress) {
-    this.progress = progress
-  }
-
-  continue() {
-    
+  start() {
+    this.intervalId = setInterval(this.update.bind(this), 50)
   }
 
   pause() {
-
+    clearInterval(this.intervalId)
   }
 
-  stop() {
+  update() {
+    this.elapsed += 0.05
+    if (this.elapsed >= this.duration) this.reset()
+    this.progress = this.elapsed / this.duration
+    this.$progress.style.transform = `translate(${this.progress * 100 - 100}%)`
+    this.$elapsed.innerText = this.formatTime(this.elapsed)
+  }
 
+  reset() {
+    this.pause()
+    this.elapsed = 0
+    this.progress = 0
+  }
+
+  render() {
+    this.$el.innerHTML = `
+      <div class="progress-time progress-elapsed"></div>
+        <div class="progress-bar">
+          <div class="progress-bar-progress"></div>
+        </div>
+      <div class="progress-time progress-duration"></div>
+    `
+  }
+
+  formatTime(seconds) {
+    let mins = Math.floor(seconds / 60)
+    let secs = Math.floor(seconds % 60)
+    if (mins < 10) mins = '0' + mins
+    if (secs < 10) secs = '0' + secs
+    return `${mins}:${secs}`
   }
 }
 
