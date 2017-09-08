@@ -366,7 +366,7 @@ i {
     padding: 15px;
     align-items: center;
     background: rgba(0, 0, 0, 0.1); }
-    #player .player-header .icon-play {
+    #player .player-header .icon-action {
       width: 44px;
       height: 44px;
       border: solid 1px #fff;
@@ -376,10 +376,11 @@ i {
       margin-right: 10px;
       background-image: url(../images/sprite_play.png);
       background-repeat: no-repeat;
-      background-size: 40px 380px;
+      background-size: 40px 380px; }
+    #player .player-header .icon-play {
       background-position: 15px -153px; }
-      #player .player-header .icon-play.icon-pause {
-        background-position: 17px -183px; }
+    #player .player-header .icon-pause {
+      background-position: 17px -183px; }
     #player .player-header .album-cover {
       width: 80px;
       height: 80px;
@@ -436,7 +437,9 @@ i {
       flex: 1;
       background-color: rgba(255, 255, 255, 0.2); }
       #player .player-footer .progress-bar .progress-bar-progress {
+        width: 20%;
         height: 2px;
+        transition: 0.1s;
         background: #31c27c; }
     #player .player-footer .progress-time {
       top: 0;

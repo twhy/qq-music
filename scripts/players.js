@@ -1,6 +1,39 @@
 class MusicPlayer {
   constructor(el) {
+    this.$el = el
+    this.$el.addEventListener('click', this)
     this.index = ++this.constructor.counter
+    this.createAudio()
+  }
+
+  createAudio() {
+    this.$audio = document.createElement('audio')
+    this.$audio.autoplay = true
+    this.$audio.loop = true
+    this.$audio.id = `player${this.index}`
+    document.body.appendChild(this.$audio)
+  }
+
+  handleEvent(event) {
+    let target = event.target
+    switch (true) {
+      case target.matches('.icon-pause'):
+        this.onPause(event)
+        break;
+      case target.matches('.icon-play'):
+        this.onPlay(event);
+        break;
+    }
+  }
+
+  onPause(event) {
+    event.target.classList.add('icon-play')
+    event.target.classList.remove('icon-pause')
+  }
+
+  onPlay(event) {
+    event.target.classList.add('icon-pause')
+    event.target.classList.remove('icon-play')
   }
 }
 
@@ -14,15 +47,12 @@ class LyricsPlayers {
 
 class ProgressBar {
   constructor(el) {
-    
+    this.$el = el
+    this.progress = 0
   }
 
-  set progress(progress) {
-
-  }
-
-  get progress() {
-
+  set(progress) {
+    this.progress = progress
   }
 
   continue() {

@@ -31,7 +31,7 @@
     padding: 15px;
     align-items: center;
     background: rgba(0,0,0,.1);
-    .icon-play {
+    .icon-action {
       width: 44px;
       height: 44px;
       border: solid 1px #fff;
@@ -42,11 +42,14 @@
       background-image: url(../images/sprite_play.png);
       background-repeat: no-repeat;
       background-size: 40px 380px;
-      background-position: 15px -153px;
-      &.icon-pause {
-        background-position: 17px -183px;
-      }
     }
+    .icon-play {
+      background-position: 15px -153px;
+    }
+    .icon-pause {
+      background-position: 17px -183px;
+    }
+
     .album-cover {
       width: 80px;
       height: 80px;
@@ -115,7 +118,9 @@
       flex: 1;
       background-color: rgba(255, 255, 255, .2);
       .progress-bar-progress {
+        width: 20%;
         height: 2px;
+        transition: 0.1s;
         background: $color-primary;
       }
     }
