@@ -349,7 +349,7 @@ i {
     position: relative;
     display: flex;
     flex-direction: column; }
-  #player .player-bg {
+  #player .player-background {
     position: absolute;
     top: 0;
     bottom: 0;
