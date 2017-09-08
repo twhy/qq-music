@@ -55,7 +55,7 @@ class LyricsPlayer {
     this.$lines.style.transform = `translateY(0)`
     let $active = this.$lines.querySelector('.active')
     if ($active) {
-      $active.classList.remove('acitive')
+      $active.classList.remove('active')
     }
 
     if (text) {
