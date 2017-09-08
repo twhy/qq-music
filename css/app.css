@@ -407,10 +407,14 @@ i {
     margin: 36px 0 60px 0;
     color: rgba(255, 255, 255, 0.6);
     max-height: calc(100% - 205px); }
+    #player .player-lyrics .player-lyrics-lines {
+      overflow: hidden;
+      transition: .5s; }
     #player .player-lyrics [class^='player-lyrics-line-'] {
       height: 42px;
       line-height: 42px;
       overflow: hidden;
+      padding: 0 15px;
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 16px;

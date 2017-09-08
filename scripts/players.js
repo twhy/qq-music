@@ -1,9 +1,99 @@
+let text = `[ti:就这样]
+[ar:李荣浩]
+[al:就这样]
+[by:]
+[offset:0]
+
+[00:00.81]就这样 - 李荣浩
+
+[00:01.50]词：施人诚
+[00:01.67]曲：李荣浩
+
+[00:01.83]编曲：李荣浩
+
+[00:02.03]制作人：李荣浩
+[00:02.26]吉他：李荣浩
+[00:02.46]贝斯：李荣浩
+[00:02.66]鼓：龙江浩
+
+[00:02.82]弦乐编写：李荣浩
+
+[00:03.09]弦乐：国际首席爱乐乐团
+[00:03.45]和声编写：李荣浩
+[00:03.71]和声：李荣浩
+[00:03.91]录音师：单为明
+[00:04.14]混音师：李荣浩/曹飞
+[00:04.47]音乐制作助理：杜以丞
+[00:04.80]录音室：北京一样音乐录音室
+[00:05.23]Vocal录音室：Lights Up Studio,Taipei
+[00:05.50]混音室：北京一样音乐录音室
+[00:05.93]母带后期制作人：李荣浩
+[00:06.29]母带后期处理工程师：Tom Coyne
+[00:06.68]母带后期处理录音室：Sterling Sound Studio
+[00:07.11]OP：一样音乐工作室
+[00:07.41]SP：酷亚音乐(深圳)有限公司 admin by One Asia Music Inc. 酷亚音乐股份有限公司
+[00:08.40]OP : HIM Music Publishing Inc.
+[00:08.60]
+[00:30.39]不忍看你像个嫌犯
+[00:34.30]
+[00:37.55]我就不再追问答案
+[00:41.69]
+[00:44.95]你的沉默已经回答
+[00:48.95]
+[00:50.69]够直接了当
+[00:56.47]
+[00:59.74]是我太常让你失望
+[01:04.04]
+[01:06.94]不够贴心包容温暖
+[01:11.49]
+[01:14.36]才会落得这个下场和背叛无关
+[01:30.65]
+[01:31.23]就这样就这样
+[01:38.55]你不用不自然
+[01:45.90]你也不要说需要我原谅
+[01:52.43]
+[01:54.25]别让我多想
+[02:00.05]
+[02:00.65]就这样就这样
+[02:08.07]怕真相太难看
+[02:14.71]
+[02:15.44]我想对爱情还抱有希望
+[02:22.80]
+[02:23.74]我们俩就这样
+[02:33.51]
+[02:39.54]以为能够功德圆满
+[02:44.13]
+[02:46.75]最后勉强好聚好散
+[02:51.14]
+[02:53.94]一段感情这样收场
+[02:58.20]
+[02:59.54]你也会遗憾
+[03:08.62]
+[03:10.80]就这样就这样
+[03:17.60]
+[03:18.14]你不用不自然
+[03:25.50]你也不要说需要我原谅
+[03:32.91]
+[03:33.95]别让我多想
+[03:40.17]就这样就这样
+[03:47.61]怕真相太难看
+[03:55.15]我想对爱情还抱有希望
+[04:01.98]
+[04:03.56]反正你也没差
+[04:17.27]就这样就这样
+[04:23.68]
+[04:24.56]怕真相太难看
+[04:31.78]我想对爱情还抱有希望
+[04:39.07]
+[04:40.32]我们俩就这样`
+
 class MusicPlayer {
   
   constructor(el) {
     this.$el = el
     this.$el.addEventListener('click', this)
     this.createAudio()
+    this.createLyrics()
     this.createProgress()
   }
 
@@ -13,6 +103,10 @@ class MusicPlayer {
     this.$audio.loop = true
     this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
     document.body.appendChild(this.$audio)
+  }
+
+  createLyrics() {
+    this.lyrics = new LyricsPlayer(this.$el.querySelector('.player-lyrics'), text)
   }
 
   createProgress() {
@@ -44,11 +138,67 @@ class MusicPlayer {
   }
 }
 
+
 class LyricsPlayer {
-  constructor(el) {
+  constructor(el, text) {
     this.$el = el
+    this.$el.innerHTML = '<div class="player-lyrics-lines"></div>'
+    this.$lines = this.$el.querySelector('.player-lyrics-lines')
+    this.text = this.formatText(text)
+    this.lyrics = this.text.match(/^\[\d{2}:\d{2}.\d{2}\](.+)$/gm)
+    this.render()
+    this.index = 0
+    this.elapsed = 0
+    this.$lines.children[this.index].classList.add('active')
+    this.start()
+  }
+
+  render() {
+    let html = this.lyrics.map((line, index) => `
+      <div class="player-lyrics-line-${index}">${line.slice(10)}</div>
+    `).join('')
+    this.$lines.innerHTML = html
+  }
+
+  start() {
+    this.intervalId = setInterval(this.update.bind(this), 1000)
+  }
+
+  pause() {
+    this.clearInterval(this.clearInterval)
+  }
+
+  update() {
+    this.elapsed += 1
+    for (let i = this.index + 1; i < this.lyrics.length; i++) {
+      let seconds = this.getSeconds(this.lyrics[i])
+      if (
+        this.elapsed === seconds &&
+        this.lyrics[i + 1] &&
+        this.elapsed < this.getSeconds(this.lyrics[i + 1])
+      ) {
+        this.$lines.children[this.index].classList.remove('active')
+        this.$lines.children[i].classList.add('active')
+        this.index = i
+        break
+      }
+    }
+    let y = -(this.index > 1 ? this.index - 2 : this.index) * this.LINE_HEIGHT
+    this.$lines.style.transform = `translateY(${y}px)`
+  }
+
+  getSeconds(line) {
+    return +line.replace(/^\[(\d{2}):(\d{2}).*/, (match, p1, p2) => 60 * (+p1) + (+p2))
+  }
+
+  formatText(text) {
+    let div = document.createElement('div')
+    div.innerText = text
+    return div.innerText
   }
 }
+
+LyricsPlayer.prototype.LINE_HEIGHT = 42
 
 class ProgressBar {
   constructor(el, duration, start) {
@@ -114,70 +264,3 @@ class ProgressBar {
 //     div.innerHTML = text
 //     return div.firstChild.nodeValue
 //   }).then(console.log)
-
-// [ti:龙卷风 (Live)]
-// [ar:周杰伦]
-// [al:周杰伦魔天伦世界巡回演唱会]
-// [by:]
-// [offset:0]
-// [00:01.25]龙卷风 (Live) - 周杰伦
-// [00:03.18]词：徐若瑄
-// [00:04.22]曲：周杰伦
-// [00:05.53]
-// [00:27.06]爱像一阵风 吹完它就走
-// [00:33.61]这样的节奏 谁都无可奈何
-// [00:40.15]没有你以后 我灵魂失控
-// [00:46.95]黑云在降落 我被它拖着走
-// [00:53.33]静静悄悄默默离开
-// [00:56.47]陷入了危险边缘Baby
-// [01:00.61]我的世界已狂风暴雨
-// [01:04.53]
-// [01:06.17]Wu 爱情来的太快就像龙卷风
-// [01:10.18]离不开暴风圈来不及逃
-// [01:13.24]我不能再想我不能再想
-// [01:16.49]我不我不我不能
-// [01:20.42]爱情走的太快就像龙卷风
-// [01:23.68]不能承受我已无处可躲
-// [01:26.56]我不要再想我不要再想
-// [01:29.85]我不我不我不要再想你
-// [01:34.01]不知不觉你已经离开我
-// [01:36.95]不知不觉我跟了这节奏
-// [01:40.26]后知后觉又过了一个秋
-// [01:43.65]后知后觉我该好好生活
-// [01:46.88]静静悄悄默默离开
-// [01:49.91]陷入了危险边缘Baby
-// [01:53.92]我的世界已狂风暴雨
-// [01:58.31]
-// [01:59.54]Wu 爱情来的太快就像龙卷风
-// [02:03.80]离不开暴风圈来不及逃
-// [02:06.70]我不能再想
-// [02:08.25]我不能再想
-// [02:09.87]我不我不我不能
-// [02:13.47]爱情走的太快就像龙卷风
-// [02:17.03]不能承受我已无处可躲
-// [02:19.93]我不要再想
-// [02:21.46]我不要再想
-// [02:23.19]我不我不我不要再想你
-// [02:27.45]
-// [02:53.75]爱情来的太快就像龙卷风
-// [02:56.92]离不开暴风圈来不及逃
-// [02:59.92]我不能再想
-// [03:01.46]我不能再想
-// [03:03.16]我不我不我不能
-// [03:06.22]
-// [03:07.08]爱情走的太快就像龙卷风
-// [03:10.26]不能承受我已无处可躲
-// [03:13.45]我不要再想
-// [03:14.84]我不要再想
-// [03:16.56]我不我不我不要再想你
-// [03:20.24]不知不觉你已经离开我
-// [03:23.69]不知不觉我跟了这节奏
-// [03:26.96]后知后觉又过了一个秋
-// [03:30.47]后知后觉我该好好生活
-// [03:34.10]不知不觉你已经离开我
-// [03:37.22]不知不觉我跟了这节奏
-// [03:40.30]后知后觉又过了一个秋
-// [03:43.74]后知后觉我该好好生活
-// [03:47.17]不知不觉你已经离开我
-// [03:50.34]不知不觉我跟了这节奏
-// [03:53.81]后知后觉后知后觉  
