@@ -75,9 +75,11 @@ class MusicPlayer {
 
   show() {
     this.$el.classList.add('show')
+    document.body.classList.add('noscroll')
   }
 
   hide() {
     this.$el.classList.remove('show')
+    document.body.classList.remove('noscroll')
   }
 }
