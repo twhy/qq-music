@@ -5,6 +5,7 @@ class MusicPlayer {
     this.createAudio()
     this.lyrics = new LyricsPlayer(this.$el.querySelector('.player-lyrics'))
     this.progress = new ProgressBar(this.$el.querySelector('.progress'))
+    this.fetching = false
   }
 
   createAudio() {
@@ -34,6 +35,7 @@ class MusicPlayer {
   }
 
   onPlay(event) {
+    if (this.fetching) return
     this.$audio.play()
     this.lyrics.start()
     this.progress.start()
@@ -63,11 +65,13 @@ class MusicPlayer {
     if (options.songid) {
       this.songid = options.songid
       this.$audio.src = `http://ws.stream.qqmusic.qq.com/${this.songid}.m4a?fromtag=46`
+      this.fetching = true
       fetch(`https://qq-music-api.now.sh/lyrics?id=${this.songid}`)
         .then(res => res.json())
         .then(json => json.lyric)
         .then(text => this.lyrics.reset(text))
         .catch(() => {})
+        .then(() => this.fetching = false)
     }
     
     this.show()
