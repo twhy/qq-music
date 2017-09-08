@@ -35,6 +35,7 @@ class ProgressBar {
     this.elapsed = 0
     this.progress = 0
     this.$progress.style.transform = `translate(-100%)`
+    this.$elapsed.innerText = this.formatTime(this.elapsed)
     if (duration) {
       this.duration = +duration
       this.$duration.innerText = this.formatTime(this.duration)

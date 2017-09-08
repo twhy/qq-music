@@ -63,6 +63,10 @@ class MusicPlayer {
     this.$el.querySelector('.player-background').style.backgroundImage = `url(${url})`
 
     if (options.songid) {
+      if (this.songid !== options.songid) {
+        this.$el.querySelector('.icon-action').className = 'icon-action icon-play'
+      }
+      
       this.songid = options.songid
       this.$audio.src = `http://ws.stream.qqmusic.qq.com/${this.songid}.m4a?fromtag=46`
       this.fetching = true
