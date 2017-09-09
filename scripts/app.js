@@ -1,3 +1,4 @@
+import './tab.js'
 import { Search } from './search.js'
 import { TopList } from './toplist.js'
 import { Recommend } from './recommend.js'
