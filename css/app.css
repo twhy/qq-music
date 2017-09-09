@@ -83,6 +83,9 @@ i {
 .hide {
   display: none; }
 
+.noscroll {
+  overflow: hidden; }
+
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
