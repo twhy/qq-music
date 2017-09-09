@@ -1,10 +1,10 @@
 (function() {
 
-  fetch('/json/rec.json')
+  fetch('https://qq-music-api.now.sh')
     .then(res => res.json())
     .then(render)
 
-  fetch('/json/rank.json')
+  fetch('https://qq-music-api.now.sh/top')
     .then(res => res.json())
     .then(json => json.data.topList)
     .then(renderTopList)
