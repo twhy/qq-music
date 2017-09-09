@@ -1,4 +1,4 @@
-class LyricsPlayer {
+export class LyricsPlayer {
   constructor(el) {
     this.$el = el
     this.$el.innerHTML = '<div class="player-lyrics-lines"></div>'

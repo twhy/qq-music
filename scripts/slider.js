@@ -1,4 +1,4 @@
-class Slider {
+export class Slider {
   constructor(options = {}) {
     this.$el = options.el
     this.slides = options.slides
@@ -36,5 +36,4 @@ class Slider {
     }
     this.$wrap.style.transform = `translate(-${this.index * 100 / this.slides.length}%)`
   }
-
 }
