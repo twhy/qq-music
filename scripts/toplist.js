@@ -15,7 +15,7 @@ export class TopList {
   }
 
   render() {
-    this.$el.querySelector('#rank-view .toplist').innerHTML = this.list.map(item => 
+    this.$el.querySelector('.toplist').innerHTML = this.list.map(item => 
       `<li class="top-item">
         <div class="top-item-media">
           <a href="#">
@@ -28,7 +28,7 @@ export class TopList {
         </div>
       </li>`).join('')
 
-    lazyload(document.querySelectorAll('#rank-view .toplist .lazyload'))
+    lazyload(this.$el.querySelectorAll('.lazyload'))
   }
 
   songlist(songs) {
