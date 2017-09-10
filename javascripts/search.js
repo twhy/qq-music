@@ -1,4 +1,4 @@
-import { SEARCH_URL } from './constants.js'
+import { searchUrl } from './helpers.js'
 
 export class Search {
   constructor(el) {
@@ -44,7 +44,7 @@ export class Search {
     if (this.keyword !== keyword) this.reset()
     this.keyword = keyword
     this.loading()
-    fetch(`${SEARCH_URL}?keyword=${this.keyword}&page=${page || this.page}`)
+    fetch(searchUrl(this.keyword, page || this.page))
       .then(res => res.json())
       .then(json => {
         this.page = json.data.song.curpage
