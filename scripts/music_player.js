@@ -6,21 +6,22 @@ export class MusicPlayer {
   constructor(el) {
     this.$el = el
     this.$el.addEventListener('click', this)
-    this.createAudio()
+    this.$audio = this.createAudio()
     this.lyrics = new LyricsPlayer(this.$el.querySelector('.player-lyrics'), this.$audio)
     this.progress = new ProgressBar(this.$el.querySelector('.progress'))
     this.fetching = false
   }
 
   createAudio() {
-    this.$audio = document.createElement('audio')
-    this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
-    this.$audio.addEventListener('ended', () => {
+    let audio = document.createElement('audio')
+    audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
+    audio.addEventListener('ended', () => {
       this.$audio.play()
       this.lyrics.restart()
       this.progress.restart()
     })
-    document.body.appendChild(this.$audio)
+    document.body.appendChild(audio)
+    return audio
   }
 
   handleEvent(event) {
