@@ -4,7 +4,7 @@
   "description": "QQ Music",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "node-sass --output-style compressed scss/app.scss > dist/app.css && autoprefixer-cli -o dist/app.css dist/app.css  && webpack -p"
   },
   "repository": {
     "type": "git",
