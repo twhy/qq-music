@@ -1,8 +1,9 @@
 export class LyricsPlayer {
-  constructor(el) {
+  constructor(el, audio) {
     this.$el = el
     this.$el.innerHTML = '<div class="player-lyrics-lines"></div>'
     this.$lines = this.$el.querySelector('.player-lyrics-lines')
+    this.$audio = audio
     this.text = ''
     this.index = 0
     this.lyrics = []
@@ -20,7 +21,7 @@ export class LyricsPlayer {
   }
 
   update() {
-    this.elapsed += 1
+    this.elapsed = Math.round(this.$audio ? this.$audio.currentTime : this.elapsed + 1)
     if (this.index === this.lyrics.length - 1) return
     for (let i = this.index + 1; i < this.lyrics.length; i++) {
       let seconds = this.getSeconds(this.lyrics[i])
