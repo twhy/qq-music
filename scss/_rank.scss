@@ -40,12 +40,13 @@
     color: #000;
     font-size: 16px;
     font-weight: normal;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
   .top-item-list {
     font-size: 14px;
     color: rgba(0,0,0,.5);
     .top-item-song {
+      height: 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

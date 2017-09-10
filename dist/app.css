@@ -181,11 +181,12 @@ i {
     color: #000;
     font-size: 16px;
     font-weight: normal;
-    margin-bottom: 5px; }
+    margin-bottom: 3px; }
   .toplist .top-item-list {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5); }
     .toplist .top-item-list .top-item-song {
+      height: 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }
