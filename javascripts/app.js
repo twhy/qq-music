@@ -1,4 +1,5 @@
 import './tab.js'
+import 'whatwg-fetch'
 import { Search } from './search.js'
 import { TopList } from './toplist.js'
 import { Recommend } from './recommend.js'

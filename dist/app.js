@@ -65,733 +65,1347 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-const RECOMMEND_URL = 'https://qq-music-api.now.sh'
-/* harmony export (immutable) */ __webpack_exports__["b"] = RECOMMEND_URL;
 
-const TOPLIST_URL = 'https://qq-music-api.now.sh/top'
-/* harmony export (immutable) */ __webpack_exports__["d"] = TOPLIST_URL;
 
-const SEARCH_URL = 'https://qq-music-api.now.sh/search'
-/* harmony export (immutable) */ __webpack_exports__["c"] = SEARCH_URL;
-
-const LYRICS_URL = 'https://qq-music-api.now.sh/lyrics'
-/* harmony export (immutable) */ __webpack_exports__["a"] = LYRICS_URL;
-
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var RECOMMEND_URL = exports.RECOMMEND_URL = 'https://qq-music-api.now.sh';
+var TOPLIST_URL = exports.TOPLIST_URL = 'https://qq-music-api.now.sh/top';
+var SEARCH_URL = exports.SEARCH_URL = 'https://qq-music-api.now.sh/search';
+var LYRICS_URL = exports.LYRICS_URL = 'https://qq-music-api.now.sh/lyrics';
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = lazyload;
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.lazyload = lazyload;
 function lazyload(images) {
-  let imgs = [].slice.call(images || document.querySelectorAll('.lazyload'))  // Array.from(images)
+  var imgs = [].slice.call(images || document.querySelectorAll('.lazyload')); // Array.from(images)
 
   if ('IntersectionObserver' in window) {
-    let observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.intersectionRatio > 0) {
-          loadImage(entry.target, () => {
-            observer.unobserve(entry.target)
-          })
+          loadImage(entry.target, function () {
+            observer.unobserve(entry.target);
+          });
         }
-      })
-    }, { threshold: 0.01 })
-  
-    imgs.forEach(img => observer.observe(img))
+      });
+    }, { threshold: 0.01 });
+
+    imgs.forEach(function (img) {
+      return observer.observe(img);
+    });
   } else {
-    let onscroll = throttle(function() {
+    var onscroll = throttle(function () {
       if (imgs.length === 0) {
-        return window.removeEventListener('scroll', onscroll)
+        return window.removeEventListener('scroll', onscroll);
       }
-      imgs = imgs.filter(img => img.classList.contains('lazyload'))
-      imgs.forEach(img => inViewport(img) && loadImage(img))
-    }, 300)
-  
-    window.addEventListener('scroll', onscroll)
-    window.dispatchEvent(new Event('scroll'))
+      imgs = imgs.filter(function (img) {
+        return img.classList.contains('lazyload');
+      });
+      imgs.forEach(function (img) {
+        return inViewport(img) && loadImage(img);
+      });
+    }, 300);
+
+    window.addEventListener('scroll', onscroll);
+    window.dispatchEvent(new Event('scroll'));
   }
 }
 
 function throttle(func, wait) {
-  let prev, timer
+  var prev = void 0,
+      timer = void 0;
   return function fn() {
-    let curr = Date.now()
-    let diff = curr - prev
+    var curr = Date.now();
+    var diff = curr - prev;
     if (!prev || diff >= wait) {
-      func()
-      prev = curr
+      func();
+      prev = curr;
     } else if (diff < wait) {
-      clearTimeout(timer)
-      timer = setTimeout(fn, wait - diff)
+      clearTimeout(timer);
+      timer = setTimeout(fn, wait - diff);
     }
-  }
+  };
 }
 
 function inViewport(img) {
-  let { top, left, right, bottom } = img.getBoundingClientRect()
-  let vpWidth = document.documentElement.clientWidth
-  let vpHeight = document.documentElement.clientHeight
-  return (
-    (top > 0 && top < vpHeight || bottom > 0 && bottom < vpHeight) &&
-    (left > 0 && left < vpWidth || right > 0 && right < vpWidth)
-  )
+  var _img$getBoundingClien = img.getBoundingClientRect(),
+      top = _img$getBoundingClien.top,
+      left = _img$getBoundingClien.left,
+      right = _img$getBoundingClien.right,
+      bottom = _img$getBoundingClien.bottom;
+
+  var vpWidth = document.documentElement.clientWidth;
+  var vpHeight = document.documentElement.clientHeight;
+  return (top > 0 && top < vpHeight || bottom > 0 && bottom < vpHeight) && (left > 0 && left < vpWidth || right > 0 && right < vpWidth);
 }
 
 function loadImage(img, callback) {
-  let image = new Image()
-  image.src = img.dataset.src
-  image.onload = function() {
-    img.src = image.src
-    img.classList.remove('lazyload')
-    if (typeof callback === 'function') callback()
-  }
+  var image = new Image();
+  image.src = img.dataset.src;
+  image.onload = function () {
+    img.src = image.src;
+    img.classList.remove('lazyload');
+    if (typeof callback === 'function') callback();
+  };
 }
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tab_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tab_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tab_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__search_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toplist_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recommend_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__music_player_js__ = __webpack_require__(8);
 
 
+__webpack_require__(3);
 
+__webpack_require__(12);
 
+var _search = __webpack_require__(4);
 
+var _toplist = __webpack_require__(5);
 
-let search = new __WEBPACK_IMPORTED_MODULE_1__search_js__["a" /* Search */](document.querySelector('#search-view'))
-let player = new __WEBPACK_IMPORTED_MODULE_4__music_player_js__["a" /* MusicPlayer */](document.querySelector('#player'))
-let toplist = new __WEBPACK_IMPORTED_MODULE_2__toplist_js__["a" /* TopList */](document.querySelector('#rank-view')).launch()
-let recommend = new __WEBPACK_IMPORTED_MODULE_3__recommend_js__["a" /* Recommend */](document.querySelector('#rec-view')).launch()
+var _recommend = __webpack_require__(6);
 
-document.querySelector('.show-player').addEventListener('click', () => {
-  player.show()
-})
+var _music_player = __webpack_require__(8);
 
-onHashChange()
-addEventListener('hashchange', onHashChange)
+var search = new _search.Search(document.querySelector('#search-view'));
+var player = new _music_player.MusicPlayer(document.querySelector('#player'));
+var toplist = new _toplist.TopList(document.querySelector('#rank-view')).launch();
+var recommend = new _recommend.Recommend(document.querySelector('#rec-view')).launch();
+
+document.querySelector('.show-player').addEventListener('click', function () {
+  player.show();
+});
+
+onHashChange();
+addEventListener('hashchange', onHashChange);
 
 function onHashChange() {
-  let hash = location.hash
+  var hash = location.hash;
   if (/^#player\?.+/.test(hash)) {
-    let matches = hash.slice(hash.indexOf('?') + 1).match(/(\w+)=([^&]+)/g)
-    let options = matches && matches.reduce((res, cur) => {
-      let arr = cur.split('=')
-      res[arr[0]] = decodeURIComponent(arr[1])
-      return res
-    }, {})
-    player.play(options)
+    var matches = hash.slice(hash.indexOf('?') + 1).match(/(\w+)=([^&]+)/g);
+    var options = matches && matches.reduce(function (res, cur) {
+      var arr = cur.split('=');
+      res[arr[0]] = decodeURIComponent(arr[1]);
+      return res;
+    }, {});
+    player.play(options);
   } else {
-    player.hide()
+    player.hide();
   }
 }
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-document.addEventListener('click', function(event) {
-  
-  let target = event.target
+"use strict";
 
-  if (target.dataset.role !== 'tab') return
 
-  [].forEach.call(target.parentElement.children, tab => {
-    tab.classList.remove('active')
-  })
-  target.classList.add('active')
-    
-  let content = document.querySelector(target.dataset.view)
+document.addEventListener('click', function (event) {
+
+  var target = event.target;
+
+  if (target.dataset.role !== 'tab') return;
+
+  [].forEach.call(target.parentElement.children, function (tab) {
+    tab.classList.remove('active');
+  });
+  target.classList.add('active');
+
+  var content = document.querySelector(target.dataset.view);
 
   if (content) {
-    [].forEach.call(content.parentElement.children, child => {
-      child.style.display = 'none'
-    })
-    content.style.display = 'block'
+    [].forEach.call(content.parentElement.children, function (child) {
+      child.style.display = 'none';
+    });
+    content.style.display = 'block';
   }
-
-})
+});
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_js__ = __webpack_require__(0);
 
 
-class Search {
-  constructor(el) {
-    this.$el = el
-    this.$input = this.$el.querySelector('#search')
-    this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
-    this.$songs = this.$el.querySelector('.song-list')
-    this.page = 1
-    this.songs = {}
-    this.keyword = ''
-    this.perpage = 20
-    this.nomore = false
-    this.fetching = false
-    this.onscroll = this.onScroll.bind(this)
-    window.addEventListener('scroll', this.onscroll)
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Search = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _constants = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Search = exports.Search = function () {
+  function Search(el) {
+    _classCallCheck(this, Search);
+
+    this.$el = el;
+    this.$input = this.$el.querySelector('#search');
+    this.$input.addEventListener('keyup', this.onKeyUp.bind(this));
+    this.$songs = this.$el.querySelector('.song-list');
+    this.page = 1;
+    this.songs = {};
+    this.keyword = '';
+    this.perpage = 20;
+    this.nomore = false;
+    this.fetching = false;
+    this.onscroll = this.onScroll.bind(this);
+    window.addEventListener('scroll', this.onscroll);
   }
 
-  onKeyUp(event) {
-    let keyword = event.target.value.trim()
-    if (!keyword) return this.reset()
-    if (event.key !== 'Enter') return
-    this.search(keyword)
-  }
-
-  onScroll(event) {
-    if (this.nomore) return window.removeEventListener('scroll', this.onscroll)
-    if (pageYOffset + document.documentElement.clientHeight > document.body.scrollHeight - 50) {
-      this.search(this.keyword, this.page + 1)
+  _createClass(Search, [{
+    key: 'onKeyUp',
+    value: function onKeyUp(event) {
+      var keyword = event.target.value.trim();
+      if (!keyword) return this.reset();
+      if (event.keyCode !== 13) return;
+      this.search(keyword);
     }
-  }
-
-  reset() {
-    this.page = 1
-    this.songs = {}
-    this.keyword = ''
-    this.nomore = false
-    this.$songs.innerHTML = ''
-  }
-
-  search(keyword, page) {
-    if (this.keyword === keyword && this.songs[page || this.page]) return
-    if (this.nomore || this.fetching) return
-    if (this.keyword !== keyword) this.reset()
-    this.keyword = keyword
-    this.loading()
-    fetch(`${__WEBPACK_IMPORTED_MODULE_0__constants_js__["c" /* SEARCH_URL */]}?keyword=${this.keyword}&page=${page || this.page}`)
-      .then(res => res.json())
-      .then(json => {
-        this.page = json.data.song.curpage
-        this.songs[this.page] = json.data.song.list
-        this.nomore = json.message === 'no results'
-        return json.data.song.list
-      })
-      .then(songs => this.append(songs))
-      .then(() => this.done())
-      .catch(() => this.fetching = false)
-  }
-
-  append(songs) {
-    let html = songs.map(song => {
-      let artist = song.singer.map(s => s.name).join(' ')
-      return `
-        <a class="song-item"
-           href="#player?artist=${artist}&songid=${song.songid}&songname=${song.songname}&albummid=${song.albummid}&duration=${song.interval}">
-          <i class="icon icon-music"></i>
-          <div class="song-name ellipsis">${song.songname}</div>
-          <div class="song-artist ellipsis">${artist}</div>
-        </a>`}).join('')
-    this.$songs.insertAdjacentHTML('beforeend', html)
-  }
-
-  loading() {
-    this.fetching = true
-    this.$el.querySelector('.search-loading').classList.add('show')
-  }
-
-  done() {
-    this.fetching = false
-    if (this.nomore) {
-      this.$el.querySelector('.loading-icon').style.display = 'none'
-      this.$el.querySelector('.loading-text').style.display = 'none'
-      this.$el.querySelector('.loading-done').style.display = 'block'
-      this.$el.querySelector('.search-loading').classList.add('show')
-    } else {
-      this.$el.querySelector('.search-loading').classList.remove('show')
+  }, {
+    key: 'onScroll',
+    value: function onScroll(event) {
+      if (this.nomore) return window.removeEventListener('scroll', this.onscroll);
+      if (pageYOffset + document.documentElement.clientHeight > document.body.scrollHeight - 50) {
+        this.search(this.keyword, this.page + 1);
+      }
     }
-  }
-  
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Search;
+  }, {
+    key: 'reset',
+    value: function reset() {
+      this.page = 1;
+      this.songs = {};
+      this.keyword = '';
+      this.nomore = false;
+      this.$songs.innerHTML = '';
+    }
+  }, {
+    key: 'search',
+    value: function search(keyword, page) {
+      var _this = this;
 
+      if (this.keyword === keyword && this.songs[page || this.page]) return;
+      if (this.nomore || this.fetching) return;
+      if (this.keyword !== keyword) this.reset();
+      this.keyword = keyword;
+      this.loading();
+      fetch(_constants.SEARCH_URL + '?keyword=' + this.keyword + '&page=' + (page || this.page)).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        _this.page = json.data.song.curpage;
+        _this.songs[_this.page] = json.data.song.list;
+        _this.nomore = json.message === 'no results';
+        return json.data.song.list;
+      }).then(function (songs) {
+        return _this.append(songs);
+      }).then(function () {
+        return _this.done();
+      }).catch(function () {
+        return _this.fetching = false;
+      });
+    }
+  }, {
+    key: 'append',
+    value: function append(songs) {
+      var html = songs.map(function (song) {
+        var artist = song.singer.map(function (s) {
+          return s.name;
+        }).join(' ');
+        return '\n        <a class="song-item"\n           href="#player?artist=' + artist + '&songid=' + song.songid + '&songname=' + song.songname + '&albummid=' + song.albummid + '&duration=' + song.interval + '">\n          <i class="icon icon-music"></i>\n          <div class="song-name ellipsis">' + song.songname + '</div>\n          <div class="song-artist ellipsis">' + artist + '</div>\n        </a>';
+      }).join('');
+      this.$songs.insertAdjacentHTML('beforeend', html);
+    }
+  }, {
+    key: 'loading',
+    value: function loading() {
+      this.fetching = true;
+      this.$el.querySelector('.search-loading').classList.add('show');
+    }
+  }, {
+    key: 'done',
+    value: function done() {
+      this.fetching = false;
+      if (this.nomore) {
+        this.$el.querySelector('.loading-icon').style.display = 'none';
+        this.$el.querySelector('.loading-text').style.display = 'none';
+        this.$el.querySelector('.loading-done').style.display = 'block';
+        this.$el.querySelector('.search-loading').classList.add('show');
+      } else {
+        this.$el.querySelector('.search-loading').classList.remove('show');
+      }
+    }
+  }]);
+
+  return Search;
+}();
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lazyload_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_js__ = __webpack_require__(0);
- 
 
 
-class TopList {
-  constructor(el) {
-    this.$el = el
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TopList = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lazyload = __webpack_require__(1);
+
+var _constants = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TopList = exports.TopList = function () {
+  function TopList(el) {
+    _classCallCheck(this, TopList);
+
+    this.$el = el;
   }
 
-  launch() {
-    fetch(__WEBPACK_IMPORTED_MODULE_1__constants_js__["d" /* TOPLIST_URL */])
-      .then(res => res.json())
-      .then(json => this.list = json.data.topList)
-      .then(() => this.render())
-    return this
-  }
+  _createClass(TopList, [{
+    key: 'launch',
+    value: function launch() {
+      var _this = this;
 
-  render() {
-    this.$el.querySelector('.toplist').innerHTML = this.list.map(item => 
-      `<li class="top-item">
-        <div class="top-item-media">
-          <a href="#">
-            <img class="lazyload" data-src="${item.picUrl}">
-          </a>
-        </div>
-        <div class="top-item-info">
-          <h3 class="top-item-title ellipsis">${item.topTitle}</h3>
-          <ul class="top-item-list">${this.songlist(item.songList)}</ul>
-        </div>
-      </li>`).join('')
+      fetch(_constants.TOPLIST_URL).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        return _this.list = json.data.topList;
+      }).then(function () {
+        return _this.render();
+      });
+      return this;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__lazyload_js__["a" /* lazyload */])(this.$el.querySelectorAll('.lazyload'))
-  }
+      this.$el.querySelector('.toplist').innerHTML = this.list.map(function (item) {
+        return '<li class="top-item">\n        <div class="top-item-media">\n          <a href="#">\n            <img class="lazyload" data-src="' + item.picUrl + '">\n          </a>\n        </div>\n        <div class="top-item-info">\n          <h3 class="top-item-title ellipsis">' + item.topTitle + '</h3>\n          <ul class="top-item-list">' + _this2.songlist(item.songList) + '</ul>\n        </div>\n      </li>';
+      }).join('');
 
-  songlist(songs) {
-    return songs.map((song, i) => 
-      `<li class="top-item-song">
-        <i class="song-index">${i + 1}</i>
-        <span class="song-name">${song.songname}</span>- ${song.singername}
-      </li>`).join('')
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = TopList;
+      (0, _lazyload.lazyload)(this.$el.querySelectorAll('.lazyload'));
+    }
+  }, {
+    key: 'songlist',
+    value: function songlist(songs) {
+      return songs.map(function (song, i) {
+        return '<li class="top-item-song">\n        <i class="song-index">' + (i + 1) + '</i>\n        <span class="song-name">' + song.songname + '</span>- ' + song.singername + '\n      </li>';
+      }).join('');
+    }
+  }]);
 
+  return TopList;
+}();
 
 /***/ }),
 /* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lazyload_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_js__ = __webpack_require__(0);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Recommend = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-class Recommend {
-  constructor(el) {
-    this.$el = el
+var _slider = __webpack_require__(7);
+
+var _lazyload = __webpack_require__(1);
+
+var _constants = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Recommend = exports.Recommend = function () {
+  function Recommend(el) {
+    _classCallCheck(this, Recommend);
+
+    this.$el = el;
   }
 
-  launch() {
-    fetch(__WEBPACK_IMPORTED_MODULE_2__constants_js__["b" /* RECOMMEND_URL */])
-      .then(res => res.json())
-      .then(json => this.json = json)
-      .then(() => this.render())
-    return this
-  }
+  _createClass(Recommend, [{
+    key: 'launch',
+    value: function launch() {
+      var _this = this;
 
-  render() {
-    this.renderSlider(this.json.data.slider)
-    this.renderRadios(this.json.data.radioList)
-    this.renderPlayLists(this.json.data.songList)
-    Object(__WEBPACK_IMPORTED_MODULE_1__lazyload_js__["a" /* lazyload */])()
-  }
+      fetch(_constants.RECOMMEND_URL).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        return _this.json = json;
+      }).then(function () {
+        return _this.render();
+      });
+      return this;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      this.renderSlider(this.json.data.slider);
+      this.renderRadios(this.json.data.radioList);
+      this.renderPlayLists(this.json.data.songList);
+      (0, _lazyload.lazyload)();
+    }
+  }, {
+    key: 'renderSlider',
+    value: function renderSlider(slides) {
+      this.slider = new _slider.Slider({
+        el: this.$el.querySelector('#slider'),
+        slides: slides.map(function (slide) {
+          return {
+            link: slide.linkUrl.replace('http://', 'https://'),
+            image: slide.picUrl.replace('http://', 'https://')
+          };
+        })
+      });
+    }
+  }, {
+    key: 'renderRadios',
+    value: function renderRadios(radios) {
+      this.$el.querySelector('.radios .list').innerHTML = radios.map(function (radio) {
+        return '<div class="list-item">\n        <div class="list-media">\n          <img class="lazyload" data-src="' + radio.picUrl + '">\n          <span class="icon icon-play"></span>\n        </div>\n        <div class="list-detail">\n          <h3 class="list-title">' + radio.Ftitle + '</h3>\n        </div>\n      </div>';
+      }).join('');
+    }
+  }, {
+    key: 'renderPlayLists',
+    value: function renderPlayLists(playlists) {
+      this.$el.querySelector('.playlists .list').innerHTML = playlists.map(function (list) {
+        return '<div class="list-item">\n        <div class="list-media">\n          <img class="lazyload" data-src="' + list.picUrl + '">\n          <span class="icon icon-play"></span>\n        </div>\n        <div class="list-detail">\n          <h3 class="list-title">' + list.songListDesc + '</h3>\n          <div class="list-text"></div>\n        </div>\n      </div>';
+      }).join('');
+    }
+  }]);
 
-  renderSlider(slides) {
-    this.slider = new __WEBPACK_IMPORTED_MODULE_0__slider_js__["a" /* Slider */]({
-      el: this.$el.querySelector('#slider'),
-      slides: slides.map(slide => ({ link: slide.linkUrl, image: slide.picUrl }))
-    })
-  }
-
-  renderRadios(radios) {
-    this.$el.querySelector('.radios .list').innerHTML = radios.map(radio => 
-      `<div class="list-item">
-        <div class="list-media">
-          <img class="lazyload" data-src="${radio.picUrl}">
-          <span class="icon icon-play"></span>
-        </div>
-        <div class="list-detail">
-          <h3 class="list-title">${radio.Ftitle}</h3>
-        </div>
-      </div>`).join('')
-  }
-
-  renderPlayLists(playlists) {
-    this.$el.querySelector('.playlists .list').innerHTML = playlists.map(list =>
-      `<div class="list-item">
-        <div class="list-media">
-          <img class="lazyload" data-src="${list.picUrl}">
-          <span class="icon icon-play"></span>
-        </div>
-        <div class="list-detail">
-          <h3 class="list-title">${list.songListDesc}</h3>
-          <div class="list-text"></div>
-        </div>
-      </div>`).join('')
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Recommend;
-
+  return Recommend;
+}();
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Slider {
-  constructor(options = {}) {
-    this.$el = options.el
-    this.slides = options.slides
-    this.interval = options.interval || 3000
-    this.duration = options.duration || 300
-    this.index = 0
-    this.render()
-    this.start()
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Slider = exports.Slider = function () {
+  function Slider() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Slider);
+
+    this.$el = options.el;
+    this.slides = options.slides;
+    this.interval = options.interval || 3000;
+    this.duration = options.duration || 300;
+    this.index = 0;
+    this.render();
+    this.start();
   }
 
-  render() {
-    this.$el.innerHTML = `<div class="qq-slider-wrap"></div>`
-    this.$wrap = this.$el.firstElementChild
-    this.$wrap.style.transitionDuration = `${this.duration}ms`
-    this.$wrap.style.width = `${this.slides.length * 100}%`
-    this.$wrap.innerHTML = this.slides.map(slide =>
-      `<div class="qq-slider-item">
-          <a href="${slide.link}">
-            <img src="${slide.image}">
-          </a>
-      </div>`
-    ).join('')
-  }
-
-  start() {
-    setInterval(this.next.bind(this), this.interval)
-  }
-
-  next() {
-    this.index += 1
-    if (this.index === this.slides.length) {
-      this.$wrap.style.transform = `translate(0)`
-      this.index = 0
-      return
+  _createClass(Slider, [{
+    key: 'render',
+    value: function render() {
+      this.$el.innerHTML = '<div class="qq-slider-wrap"></div>';
+      this.$wrap = this.$el.firstElementChild;
+      this.$wrap.style.transitionDuration = this.duration + 'ms';
+      this.$wrap.style.width = this.slides.length * 100 + '%';
+      this.$wrap.innerHTML = this.slides.map(function (slide) {
+        return '<div class="qq-slider-item">\n          <a href="' + slide.link + '">\n            <img src="' + slide.image + '">\n          </a>\n      </div>';
+      }).join('');
     }
-    this.$wrap.style.transform = `translate(-${this.index * 100 / this.slides.length}%)`
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Slider;
+  }, {
+    key: 'start',
+    value: function start() {
+      setInterval(this.next.bind(this), this.interval);
+    }
+  }, {
+    key: 'next',
+    value: function next() {
+      this.index += 1;
+      if (this.index === this.slides.length) {
+        this.$wrap.style.transform = 'translate(0)';
+        this.index = 0;
+        return;
+      }
+      this.$wrap.style.transform = 'translate(-' + this.index * 100 / this.slides.length + '%)';
+    }
+  }]);
 
+  return Slider;
+}();
 
 /***/ }),
 /* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__progress_bar_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lyrics_player_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_js__ = __webpack_require__(11);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MusicPlayer = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-class MusicPlayer {
-  constructor(el) {
-    this.$el = el
-    this.$el.addEventListener('click', this)
-    this.$audio = this.createAudio()
-    this.lyrics = new __WEBPACK_IMPORTED_MODULE_1__lyrics_player_js__["a" /* LyricsPlayer */](this.$el.querySelector('.player-lyrics'), this.$audio)
-    this.progress = new __WEBPACK_IMPORTED_MODULE_0__progress_bar_js__["a" /* ProgressBar */](this.$el.querySelector('.progress'))
-    this.fetching = false
+var _progress_bar = __webpack_require__(9);
+
+var _lyrics_player = __webpack_require__(10);
+
+var _helpers = __webpack_require__(11);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MusicPlayer = exports.MusicPlayer = function () {
+  function MusicPlayer(el) {
+    _classCallCheck(this, MusicPlayer);
+
+    this.$el = el;
+    this.$el.addEventListener('click', this);
+    this.$audio = this.createAudio();
+    this.lyrics = new _lyrics_player.LyricsPlayer(this.$el.querySelector('.player-lyrics'), this.$audio);
+    this.progress = new _progress_bar.ProgressBar(this.$el.querySelector('.progress'));
+    this.fetching = false;
   }
 
-  createAudio() {
-    let audio = document.createElement('audio')
-    audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
-    audio.addEventListener('ended', () => {
-      this.$audio.play()
-      this.lyrics.restart()
-      this.progress.restart()
-    })
-    document.body.appendChild(audio)
-    return audio
-  }
+  _createClass(MusicPlayer, [{
+    key: 'createAudio',
+    value: function createAudio() {
+      var _this = this;
 
-  handleEvent(event) {
-    let target = event.target
-    switch (true) {
-      case target.matches('.icon-play'):
-        this.onPlay(event)
-        break
-      case target.matches('.icon-pause'):
-        this.onPause(event)
-        break
-      case target.matches('.icon-list'):
-        this.hide()
-        break
+      var audio = document.createElement('audio');
+      audio.id = 'player-' + Math.floor(Math.random() * 100) + '-' + +new Date();
+      audio.addEventListener('ended', function () {
+        _this.$audio.play();
+        _this.lyrics.restart();
+        _this.progress.restart();
+      });
+      document.body.appendChild(audio);
+      return audio;
     }
-  }
-
-  onPlay(event) {
-    if (this.fetching) return
-    this.$audio.play()
-    this.lyrics.start()
-    this.progress.start()
-    event.target.classList.add('icon-pause')
-    event.target.classList.remove('icon-play')
-  }
-
-  onPause(event) {
-    this.$audio.pause()
-    this.lyrics.pause()
-    this.progress.pause()
-    event.target.classList.add('icon-play')
-    event.target.classList.remove('icon-pause')
-  }
-
-  play(options = {}) {
-    if (!options) return
-    
-    this.$el.querySelector('.song-name').innerText = options.songname
-    this.$el.querySelector('.song-artist').innerText = options.artist
-    this.progress.reset(options.duration)
-    
-    let coverUrl = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_js__["a" /* albumCoverUrl */])(options.albummid)
-    this.$el.querySelector('.album-cover').src = coverUrl
-    this.$el.querySelector('.player-background').style.backgroundImage = `url(${coverUrl})`
-
-    if (options.songid) {
-      if (this.songid !== options.songid) {
-        this.$el.querySelector('.icon-action').className = 'icon-action icon-play'
+  }, {
+    key: 'handleEvent',
+    value: function handleEvent(event) {
+      var target = event.target;
+      switch (true) {
+        case target.matches('.icon-play'):
+          this.onPlay(event);
+          break;
+        case target.matches('.icon-pause'):
+          this.onPause(event);
+          break;
+        case target.matches('.icon-list'):
+          this.hide();
+          break;
       }
-      
-      this.songid = options.songid
-      this.$audio.src = Object(__WEBPACK_IMPORTED_MODULE_2__helpers_js__["c" /* songUrl */])(this.songid)
-      this.fetching = true
-      fetch(Object(__WEBPACK_IMPORTED_MODULE_2__helpers_js__["b" /* lyricsUrl */])(this.songid))
-        .then(res => res.json())
-        .then(json => json.lyric)
-        .then(text => this.lyrics.reset(text))
-        .catch(() => {})
-        .then(() => this.fetching = false)
     }
-    
-    this.show()
-  }
+  }, {
+    key: 'onPlay',
+    value: function onPlay(event) {
+      if (this.fetching) return;
+      this.$audio.play();
+      this.lyrics.start();
+      this.progress.start();
+      event.target.classList.add('icon-pause');
+      event.target.classList.remove('icon-play');
+    }
+  }, {
+    key: 'onPause',
+    value: function onPause(event) {
+      this.$audio.pause();
+      this.lyrics.pause();
+      this.progress.pause();
+      event.target.classList.add('icon-play');
+      event.target.classList.remove('icon-pause');
+    }
+  }, {
+    key: 'play',
+    value: function play() {
+      var _this2 = this;
 
-  show() {
-    this.$el.classList.add('show')
-    document.body.classList.add('noscroll')
-  }
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  hide() {
-    this.$el.classList.remove('show')
-    document.body.classList.remove('noscroll')
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = MusicPlayer;
+      if (!options) return;
 
+      this.$el.querySelector('.song-name').innerText = options.songname;
+      this.$el.querySelector('.song-artist').innerText = options.artist;
+      this.progress.reset(options.duration);
+
+      var coverUrl = (0, _helpers.albumCoverUrl)(options.albummid);
+      this.$el.querySelector('.album-cover').src = coverUrl;
+      this.$el.querySelector('.player-background').style.backgroundImage = 'url(' + coverUrl + ')';
+
+      if (options.songid) {
+        if (this.songid !== options.songid) {
+          this.$el.querySelector('.icon-action').className = 'icon-action icon-play';
+        }
+
+        this.songid = options.songid;
+        this.$audio.src = (0, _helpers.songUrl)(this.songid);
+        this.fetching = true;
+        fetch((0, _helpers.lyricsUrl)(this.songid)).then(function (res) {
+          return res.json();
+        }).then(function (json) {
+          return json.lyric;
+        }).then(function (text) {
+          return _this2.lyrics.reset(text);
+        }).catch(function () {}).then(function () {
+          return _this2.fetching = false;
+        });
+      }
+
+      this.show();
+    }
+  }, {
+    key: 'show',
+    value: function show() {
+      this.$el.classList.add('show');
+      document.body.classList.add('noscroll');
+    }
+  }, {
+    key: 'hide',
+    value: function hide() {
+      this.$el.classList.remove('show');
+      document.body.classList.remove('noscroll');
+    }
+  }]);
+
+  return MusicPlayer;
+}();
 
 /***/ }),
 /* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class ProgressBar {
-  constructor(el, duration, start) {
-    this.$el = el
-    this.elapsed = 0
-    this.duration = duration || 0
-    this.progress = 0
-    this.render()
-    this.$progress = this.$el.querySelector('.progress-bar-progress')
-    this.$elapsed = this.$el.querySelector('.progress-elapsed')
-    this.$duration = this.$el.querySelector('.progress-duration')
-    this.$elapsed.innerText = this.formatTime(this.elapsed)
-    this.$duration.innerText = this.formatTime(this.duration)
-    if (start) this.start()
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ProgressBar = exports.ProgressBar = function () {
+  function ProgressBar(el, duration, start) {
+    _classCallCheck(this, ProgressBar);
+
+    this.$el = el;
+    this.elapsed = 0;
+    this.duration = duration || 0;
+    this.progress = 0;
+    this.render();
+    this.$progress = this.$el.querySelector('.progress-bar-progress');
+    this.$elapsed = this.$el.querySelector('.progress-elapsed');
+    this.$duration = this.$el.querySelector('.progress-duration');
+    this.$elapsed.innerText = this.formatTime(this.elapsed);
+    this.$duration.innerText = this.formatTime(this.duration);
+    if (start) this.start();
   }
 
-  start() {
-    this.pause()
-    this.intervalId = setInterval(this.update.bind(this), 50)
-  }
-
-  pause() {
-    clearInterval(this.intervalId)
-  }
-
-  update() {
-    this.elapsed += 0.05
-    if (this.elapsed >= this.duration) this.reset()
-    this.progress = this.elapsed / this.duration
-    this.$progress.style.transform = `translate(${this.progress * 100 - 100}%)`
-    this.$elapsed.innerText = this.formatTime(this.elapsed)
-  }
-
-  reset(duration) {
-    this.pause()
-    this.elapsed = 0
-    this.progress = 0
-    this.$progress.style.transform = `translate(-100%)`
-    this.$elapsed.innerText = this.formatTime(this.elapsed)
-    if (duration) {
-      this.duration = +duration
-      this.$duration.innerText = this.formatTime(this.duration)
+  _createClass(ProgressBar, [{
+    key: 'start',
+    value: function start() {
+      this.pause();
+      this.intervalId = setInterval(this.update.bind(this), 50);
     }
-  }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      clearInterval(this.intervalId);
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      this.elapsed += 0.05;
+      if (this.elapsed >= this.duration) this.reset();
+      this.progress = this.elapsed / this.duration;
+      this.$progress.style.transform = 'translate(' + (this.progress * 100 - 100) + '%)';
+      this.$elapsed.innerText = this.formatTime(this.elapsed);
+    }
+  }, {
+    key: 'reset',
+    value: function reset(duration) {
+      this.pause();
+      this.elapsed = 0;
+      this.progress = 0;
+      this.$progress.style.transform = 'translate(-100%)';
+      this.$elapsed.innerText = this.formatTime(this.elapsed);
+      if (duration) {
+        this.duration = +duration;
+        this.$duration.innerText = this.formatTime(this.duration);
+      }
+    }
+  }, {
+    key: 'restart',
+    value: function restart() {
+      this.reset();
+      this.start();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      this.$el.innerHTML = '\n      <div class="progress-time progress-elapsed"></div>\n        <div class="progress-bar">\n          <div class="progress-bar-progress"></div>\n        </div>\n      <div class="progress-time progress-duration"></div>\n    ';
+    }
+  }, {
+    key: 'formatTime',
+    value: function formatTime(seconds) {
+      var mins = Math.floor(seconds / 60);
+      var secs = Math.floor(seconds % 60);
+      if (mins < 10) mins = '0' + mins;
+      if (secs < 10) secs = '0' + secs;
+      return mins + ':' + secs;
+    }
+  }]);
 
-  restart() {
-    this.reset()
-    this.start()
-  }
-
-  render() {
-    this.$el.innerHTML = `
-      <div class="progress-time progress-elapsed"></div>
-        <div class="progress-bar">
-          <div class="progress-bar-progress"></div>
-        </div>
-      <div class="progress-time progress-duration"></div>
-    `
-  }
-
-  formatTime(seconds) {
-    let mins = Math.floor(seconds / 60)
-    let secs = Math.floor(seconds % 60)
-    if (mins < 10) mins = '0' + mins
-    if (secs < 10) secs = '0' + secs
-    return `${mins}:${secs}`
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ProgressBar;
-
+  return ProgressBar;
+}();
 
 /***/ }),
 /* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class LyricsPlayer {
-  constructor(el, audio) {
-    this.$el = el
-    this.$el.innerHTML = '<div class="player-lyrics-lines"></div>'
-    this.$lines = this.$el.querySelector('.player-lyrics-lines')
-    this.$audio = audio
-    this.text = ''
-    this.index = 0
-    this.lyrics = []
-    this.elapsed = 0
-    this.reset(this.text)
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LyricsPlayer = exports.LyricsPlayer = function () {
+  function LyricsPlayer(el, audio) {
+    _classCallCheck(this, LyricsPlayer);
+
+    this.$el = el;
+    this.$el.innerHTML = '<div class="player-lyrics-lines"></div>';
+    this.$lines = this.$el.querySelector('.player-lyrics-lines');
+    this.$audio = audio;
+    this.text = '';
+    this.index = 0;
+    this.lyrics = [];
+    this.elapsed = 0;
+    this.reset(this.text);
   }
 
-  start() {
-    this.pause()
-    this.intervalId = setInterval(this.update.bind(this), 1000)
-  }
-
-  pause() {
-    clearInterval(this.intervalId)
-  }
-
-  update() {
-    this.elapsed = Math.round(this.$audio ? this.$audio.currentTime : this.elapsed + 1)
-    if (this.index === this.lyrics.length - 1) return
-    for (let i = this.index + 1; i < this.lyrics.length; i++) {
-      let seconds = this.getSeconds(this.lyrics[i])
-      if (
-        this.elapsed === seconds &&
-        (!this.lyrics[i + 1] || this.elapsed < this.getSeconds(this.lyrics[i + 1]))
-      ) {
-        this.$lines.children[this.index].classList.remove('active')
-        this.$lines.children[i].classList.add('active')
-        this.index = i
-        break
+  _createClass(LyricsPlayer, [{
+    key: 'start',
+    value: function start() {
+      this.pause();
+      this.intervalId = setInterval(this.update.bind(this), 1000);
+    }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      clearInterval(this.intervalId);
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      this.elapsed = Math.round(this.$audio ? this.$audio.currentTime : this.elapsed + 1);
+      if (this.index === this.lyrics.length - 1) return;
+      for (var i = this.index + 1; i < this.lyrics.length; i++) {
+        var seconds = this.getSeconds(this.lyrics[i]);
+        if (this.elapsed === seconds && (!this.lyrics[i + 1] || this.elapsed < this.getSeconds(this.lyrics[i + 1]))) {
+          this.$lines.children[this.index].classList.remove('active');
+          this.$lines.children[i].classList.add('active');
+          this.index = i;
+          break;
+        }
+      }
+      if (this.index > 2) {
+        var y = -(this.index - 2) * this.LINE_HEIGHT;
+        this.$lines.style.transform = 'translateY(' + y + 'px)';
       }
     }
-    if (this.index > 2) {
-      let y = -(this.index - 2) * this.LINE_HEIGHT
-      this.$lines.style.transform = `translateY(${y}px)`
+  }, {
+    key: 'render',
+    value: function render() {
+      var html = this.lyrics.map(function (line) {
+        return '\n      <div class="player-lyrics-line">' + line.slice(10) + '</div>\n    ';
+      }).join('');
+      this.$lines.innerHTML = html;
     }
-  }
+  }, {
+    key: 'reset',
+    value: function reset(text) {
+      this.pause();
+      this.index = 0;
+      this.elapsed = 0;
 
-  render() {
-    let html = this.lyrics.map(line => `
-      <div class="player-lyrics-line">${line.slice(10)}</div>
-    `).join('')
-    this.$lines.innerHTML = html
-  }
+      this.$lines.style.transform = 'translateY(0)';
+      var $active = this.$lines.querySelector('.active');
+      if ($active) {
+        $active.classList.remove('active');
+      }
 
-  reset(text) {
-    this.pause()
-    this.index = 0
-    this.elapsed = 0
-    
-    this.$lines.style.transform = `translateY(0)`
-    let $active = this.$lines.querySelector('.active')
-    if ($active) {
-      $active.classList.remove('active')
+      if (text) {
+        this.text = this.formatText(text) || '';
+        this.lyrics = this.text.match(/^\[\d{2}:\d{2}.\d{2}\](.+)$/gm) || [];
+        if (this.lyrics.length) this.render();
+      }
+
+      if (this.lyrics.length) {
+        this.$lines.children[this.index].classList.add('active');
+      }
     }
-
-    if (text) {
-      this.text = this.formatText(text) || ''
-      this.lyrics = this.text.match(/^\[\d{2}:\d{2}.\d{2}\](.+)$/gm) || []
-      if (this.lyrics.length) this.render()
+  }, {
+    key: 'restart',
+    value: function restart() {
+      this.reset();
+      this.start();
     }
-
-    if (this.lyrics.length) {
-      this.$lines.children[this.index].classList.add('active')
+  }, {
+    key: 'getSeconds',
+    value: function getSeconds(line) {
+      return +line.replace(/^\[(\d{2}):(\d{2}).*/, function (match, p1, p2) {
+        return 60 * +p1 + +p2;
+      });
     }
-  }
+  }, {
+    key: 'formatText',
+    value: function formatText(text) {
+      var div = document.createElement('div');
+      div.innerHTML = text;
+      return div.innerText;
+    }
+  }]);
 
-  restart() {
-    this.reset()
-    this.start()
-  }
+  return LyricsPlayer;
+}();
 
-  getSeconds(line) {
-    return +line.replace(/^\[(\d{2}):(\d{2}).*/, (match, p1, p2) => 60 * (+p1) + (+p2))
-  }
-
-  formatText(text) {
-    let div = document.createElement('div')
-    div.innerHTML = text
-    return div.innerText
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = LyricsPlayer;
-
-
-LyricsPlayer.prototype.LINE_HEIGHT = 42
+LyricsPlayer.prototype.LINE_HEIGHT = 42;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = songUrl;
-/* harmony export (immutable) */ __webpack_exports__["b"] = lyricsUrl;
-/* harmony export (immutable) */ __webpack_exports__["a"] = albumCoverUrl;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_js__ = __webpack_require__(0);
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.songUrl = songUrl;
+exports.lyricsUrl = lyricsUrl;
+exports.albumCoverUrl = albumCoverUrl;
+
+var _constants = __webpack_require__(0);
 
 function songUrl(id) {
-  return `http://ws.stream.qqmusic.qq.com/${id}.m4a?fromtag=46`
+  return 'http://ws.stream.qqmusic.qq.com/' + id + '.m4a?fromtag=46';
 }
 
 function lyricsUrl(songid) {
-  return `${__WEBPACK_IMPORTED_MODULE_0__constants_js__["a" /* LYRICS_URL */]}?id=${songid}`
+  return _constants.LYRICS_URL + '?id=' + songid;
 }
 
 function albumCoverUrl(id) {
-  return `https://y.gtimg.cn/music/photo_new/T002R150x150M000${id}.jpg`
+  return 'https://y.gtimg.cn/music/photo_new/T002R150x150M000' + id + '.jpg';
 }
 
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+(function(self) {
+  'use strict';
+
+  if (self.fetch) {
+    return
+  }
+
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob()
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  }
+
+  if (support.arrayBuffer) {
+    var viewClasses = [
+      '[object Int8Array]',
+      '[object Uint8Array]',
+      '[object Uint8ClampedArray]',
+      '[object Int16Array]',
+      '[object Uint16Array]',
+      '[object Int32Array]',
+      '[object Uint32Array]',
+      '[object Float32Array]',
+      '[object Float64Array]'
+    ]
+
+    var isDataView = function(obj) {
+      return obj && DataView.prototype.isPrototypeOf(obj)
+    }
+
+    var isArrayBufferView = ArrayBuffer.isView || function(obj) {
+      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+    }
+  }
+
+  function normalizeName(name) {
+    if (typeof name !== 'string') {
+      name = String(name)
+    }
+    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+      throw new TypeError('Invalid character in header field name')
+    }
+    return name.toLowerCase()
+  }
+
+  function normalizeValue(value) {
+    if (typeof value !== 'string') {
+      value = String(value)
+    }
+    return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift()
+        return {done: value === undefined, value: value}
+      }
+    }
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      }
+    }
+
+    return iterator
+  }
+
+  function Headers(headers) {
+    this.map = {}
+
+    if (headers instanceof Headers) {
+      headers.forEach(function(value, name) {
+        this.append(name, value)
+      }, this)
+    } else if (Array.isArray(headers)) {
+      headers.forEach(function(header) {
+        this.append(header[0], header[1])
+      }, this)
+    } else if (headers) {
+      Object.getOwnPropertyNames(headers).forEach(function(name) {
+        this.append(name, headers[name])
+      }, this)
+    }
+  }
+
+  Headers.prototype.append = function(name, value) {
+    name = normalizeName(name)
+    value = normalizeValue(value)
+    var oldValue = this.map[name]
+    this.map[name] = oldValue ? oldValue+','+value : value
+  }
+
+  Headers.prototype['delete'] = function(name) {
+    delete this.map[normalizeName(name)]
+  }
+
+  Headers.prototype.get = function(name) {
+    name = normalizeName(name)
+    return this.has(name) ? this.map[name] : null
+  }
+
+  Headers.prototype.has = function(name) {
+    return this.map.hasOwnProperty(normalizeName(name))
+  }
+
+  Headers.prototype.set = function(name, value) {
+    this.map[normalizeName(name)] = normalizeValue(value)
+  }
+
+  Headers.prototype.forEach = function(callback, thisArg) {
+    for (var name in this.map) {
+      if (this.map.hasOwnProperty(name)) {
+        callback.call(thisArg, this.map[name], name, this)
+      }
+    }
+  }
+
+  Headers.prototype.keys = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push(name) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.values = function() {
+    var items = []
+    this.forEach(function(value) { items.push(value) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.entries = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push([name, value]) })
+    return iteratorFor(items)
+  }
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+  }
+
+  function consumed(body) {
+    if (body.bodyUsed) {
+      return Promise.reject(new TypeError('Already read'))
+    }
+    body.bodyUsed = true
+  }
+
+  function fileReaderReady(reader) {
+    return new Promise(function(resolve, reject) {
+      reader.onload = function() {
+        resolve(reader.result)
+      }
+      reader.onerror = function() {
+        reject(reader.error)
+      }
+    })
+  }
+
+  function readBlobAsArrayBuffer(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsArrayBuffer(blob)
+    return promise
+  }
+
+  function readBlobAsText(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsText(blob)
+    return promise
+  }
+
+  function readArrayBufferAsText(buf) {
+    var view = new Uint8Array(buf)
+    var chars = new Array(view.length)
+
+    for (var i = 0; i < view.length; i++) {
+      chars[i] = String.fromCharCode(view[i])
+    }
+    return chars.join('')
+  }
+
+  function bufferClone(buf) {
+    if (buf.slice) {
+      return buf.slice(0)
+    } else {
+      var view = new Uint8Array(buf.byteLength)
+      view.set(new Uint8Array(buf))
+      return view.buffer
+    }
+  }
+
+  function Body() {
+    this.bodyUsed = false
+
+    this._initBody = function(body) {
+      this._bodyInit = body
+      if (!body) {
+        this._bodyText = ''
+      } else if (typeof body === 'string') {
+        this._bodyText = body
+      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+        this._bodyBlob = body
+      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+        this._bodyFormData = body
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString()
+      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+        this._bodyArrayBuffer = bufferClone(body.buffer)
+        // IE 10-11 can't handle a DataView body.
+        this._bodyInit = new Blob([this._bodyArrayBuffer])
+      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+        this._bodyArrayBuffer = bufferClone(body)
+      } else {
+        throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type)
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+        }
+      }
+    }
+
+    if (support.blob) {
+      this.blob = function() {
+        var rejected = consumed(this)
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return Promise.resolve(this._bodyBlob)
+        } else if (this._bodyArrayBuffer) {
+          return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as blob')
+        } else {
+          return Promise.resolve(new Blob([this._bodyText]))
+        }
+      }
+
+      this.arrayBuffer = function() {
+        if (this._bodyArrayBuffer) {
+          return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+        } else {
+          return this.blob().then(readBlobAsArrayBuffer)
+        }
+      }
+    }
+
+    this.text = function() {
+      var rejected = consumed(this)
+      if (rejected) {
+        return rejected
+      }
+
+      if (this._bodyBlob) {
+        return readBlobAsText(this._bodyBlob)
+      } else if (this._bodyArrayBuffer) {
+        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+      } else if (this._bodyFormData) {
+        throw new Error('could not read FormData body as text')
+      } else {
+        return Promise.resolve(this._bodyText)
+      }
+    }
+
+    if (support.formData) {
+      this.formData = function() {
+        return this.text().then(decode)
+      }
+    }
+
+    this.json = function() {
+      return this.text().then(JSON.parse)
+    }
+
+    return this
+  }
+
+  // HTTP methods whose capitalization should be normalized
+  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+  function normalizeMethod(method) {
+    var upcased = method.toUpperCase()
+    return (methods.indexOf(upcased) > -1) ? upcased : method
+  }
+
+  function Request(input, options) {
+    options = options || {}
+    var body = options.body
+
+    if (input instanceof Request) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url
+      this.credentials = input.credentials
+      if (!options.headers) {
+        this.headers = new Headers(input.headers)
+      }
+      this.method = input.method
+      this.mode = input.mode
+      if (!body && input._bodyInit != null) {
+        body = input._bodyInit
+        input.bodyUsed = true
+      }
+    } else {
+      this.url = String(input)
+    }
+
+    this.credentials = options.credentials || this.credentials || 'omit'
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers)
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET')
+    this.mode = options.mode || this.mode || null
+    this.referrer = null
+
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+      throw new TypeError('Body not allowed for GET or HEAD requests')
+    }
+    this._initBody(body)
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this, { body: this._bodyInit })
+  }
+
+  function decode(body) {
+    var form = new FormData()
+    body.trim().split('&').forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=')
+        var name = split.shift().replace(/\+/g, ' ')
+        var value = split.join('=').replace(/\+/g, ' ')
+        form.append(decodeURIComponent(name), decodeURIComponent(value))
+      }
+    })
+    return form
+  }
+
+  function parseHeaders(rawHeaders) {
+    var headers = new Headers()
+    rawHeaders.split(/\r?\n/).forEach(function(line) {
+      var parts = line.split(':')
+      var key = parts.shift().trim()
+      if (key) {
+        var value = parts.join(':').trim()
+        headers.append(key, value)
+      }
+    })
+    return headers
+  }
+
+  Body.call(Request.prototype)
+
+  function Response(bodyInit, options) {
+    if (!options) {
+      options = {}
+    }
+
+    this.type = 'default'
+    this.status = 'status' in options ? options.status : 200
+    this.ok = this.status >= 200 && this.status < 300
+    this.statusText = 'statusText' in options ? options.statusText : 'OK'
+    this.headers = new Headers(options.headers)
+    this.url = options.url || ''
+    this._initBody(bodyInit)
+  }
+
+  Body.call(Response.prototype)
+
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  }
+
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''})
+    response.type = 'error'
+    return response
+  }
+
+  var redirectStatuses = [301, 302, 303, 307, 308]
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
+    }
+
+    return new Response(null, {status: status, headers: {location: url}})
+  }
+
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+
+  self.fetch = function(input, init) {
+    return new Promise(function(resolve, reject) {
+      var request = new Request(input, init)
+      var xhr = new XMLHttpRequest()
+
+      xhr.onload = function() {
+        var options = {
+          status: xhr.status,
+          statusText: xhr.statusText,
+          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+        }
+        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')
+        var body = 'response' in xhr ? xhr.response : xhr.responseText
+        resolve(new Response(body, options))
+      }
+
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.ontimeout = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.open(request.method, request.url, true)
+
+      if (request.credentials === 'include') {
+        xhr.withCredentials = true
+      }
+
+      if ('responseType' in xhr && support.blob) {
+        xhr.responseType = 'blob'
+      }
+
+      request.headers.forEach(function(value, name) {
+        xhr.setRequestHeader(name, value)
+      })
+
+      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+    })
+  }
+  self.fetch.polyfill = true
+})(typeof self !== 'undefined' ? self : this);
 
 
 /***/ })
