@@ -3,6 +3,7 @@ module.exports = {
   output: {
     filename: 'dist/app.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
